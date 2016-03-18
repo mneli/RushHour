@@ -1,4 +1,3 @@
-
 package g42861.rushhour.model;
 
 /**
