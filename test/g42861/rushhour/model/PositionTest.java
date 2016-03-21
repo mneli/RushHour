@@ -35,7 +35,7 @@ public class PositionTest {
     }
 
     /**
-     * Test of getPosition method, of class Position.
+     * Test of getPosition method, of class Position. Case direction UP
      */
     @Test
     public void testGePositionUp() {
@@ -47,7 +47,7 @@ public class PositionTest {
     }
 
     /**
-     * Test of getPosition method, of class Position.
+     * Test of getPosition method, of class Position. Case direction DOWN
      */
     @Test
     public void testGePositionDown() {
@@ -59,7 +59,7 @@ public class PositionTest {
     }
 
     /**
-     * Test of getPosition method, of class Position.
+     * Test of getPosition method, of class Position. Case direction LEFT
      */
     @Test
     public void testGePositionLeft() {
@@ -71,7 +71,7 @@ public class PositionTest {
     }
 
     /**
-     * Test of getPosition method, of class Position.
+     * Test of getPosition method, of class Position. Case direction Right
      */
     @Test
     public void testGePositionRight() {
