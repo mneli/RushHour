@@ -1,5 +1,8 @@
 package g42861.rushhour.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author G42861
@@ -114,6 +117,35 @@ public class Car {
         }
 
         this.currentPosition = this.currentPosition.getPosition(direction);
+    }
+
+    /**
+     * Get the list of positions a car occupies. Example :
+     * <li>If a car of size 2 is oriented horizontally, and the current position
+     * is (1,2), the returned list will contain the positions (1,2) and
+     * (1,3)</li>
+     * <li>If a car of size 3 is oriented vertically, and the current position
+     * is (1,2), the returned list will contain the positions (1,2), (2,2) and
+     * (3,3)</li>
+     *
+     * @return a list of positions this instance of Car occupies without any
+     * particular order in the list
+     */
+    public List<Position> getPositions() {
+        List<Position> listPositions = new ArrayList<Position>();
+        for (int i = 0; i < this.size; i++) {
+            switch (this.orientation) {
+                case HORIZONTAL:
+                    listPositions.add(new Position(this.currentPosition.getRow(), this.currentPosition.getColumn() + i));
+                    break;
+                case VERTICAL:
+                    listPositions.add(new Position(this.currentPosition.getRow() + i, this.currentPosition.getColumn()));
+                    break;
+                default:
+            }
+        }
+
+        return listPositions;
     }
 
 }

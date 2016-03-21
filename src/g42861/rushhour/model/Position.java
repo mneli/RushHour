@@ -100,4 +100,5 @@ public class Position {
     warning attributes
     Overrive nécessaire pour la méthode equals?
     Méthode hashcode necessaire?
+    javadoc classe?
  */

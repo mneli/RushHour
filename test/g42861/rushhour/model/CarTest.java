@@ -136,3 +136,8 @@ public class CarTest {
     }
 
 }
+/*
+    @issue
+    test accesseur nécessaire?
+    les méthodes non triviaux ne doivent pas être testé, indiqué dans les consignes remise II
+*/
