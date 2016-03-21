@@ -24,7 +24,7 @@ public class Position {
     /**
      * Get the row of an instance of Position.
      *
-     * @return the row
+     * @return the row of the position
      */
     public int getRow() {
         return this.row;
@@ -33,7 +33,7 @@ public class Position {
     /**
      * Get the column of an instance of Position.
      *
-     * @return the column
+     * @return the column of the position
      */
     public int getColumn() {
         return this.column;
@@ -42,7 +42,7 @@ public class Position {
     /**
      * Determine the state of an instance of Position.
      *
-     * @return the coordinates of a position
+     * @return the coordinates of the position
      */
     @Override
     public String toString() {
@@ -50,14 +50,14 @@ public class Position {
     }
 
     /**
-     * Get the position in the direction next to the current instance of
-     * Position. For example : If the current position is (2,3) and the
-     * direction is UP, the position next to the current position is (1,3)
+     * Get the translated position in the direction next to the current instance
+     * of Position. For example : If the current position is (2,3) and the
+     * direction is UP, the translated position would be (1,3)
      *
-     * @param direction
+     * @param direction the direction of the position translation
      * @return the new position
      */
-    public Position gePosition(Direction direction) {
+    public Position getPosition(Direction direction) {
         Position newPosition = null;
         switch (direction) {
             case UP:

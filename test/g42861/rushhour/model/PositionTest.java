@@ -35,50 +35,50 @@ public class PositionTest {
     }
 
     /**
-     * Test of gePosition method, of class Position.
+     * Test of getPosition method, of class Position.
      */
     @Test
     public void testGePositionUp() {
         Direction direction = Direction.UP;
         Position instance = new Position(2, 7);
         Position expResult = new Position(1, 7);
-        Position result = instance.gePosition(direction);
+        Position result = instance.getPosition(direction);
         assertEquals(expResult, result);
     }
 
     /**
-     * Test of gePosition method, of class Position.
+     * Test of getPosition method, of class Position.
      */
     @Test
     public void testGePositionDown() {
         Direction direction = Direction.DOWN;
         Position instance = new Position(2, 7);
         Position expResult = new Position(3, 7);
-        Position result = instance.gePosition(direction);
+        Position result = instance.getPosition(direction);
         assertEquals(expResult, result);
     }
 
     /**
-     * Test of gePosition method, of class Position.
+     * Test of getPosition method, of class Position.
      */
     @Test
     public void testGePositionLeft() {
         Direction direction = Direction.LEFT;
         Position instance = new Position(2, 7);
         Position expResult = new Position(2, 6);
-        Position result = instance.gePosition(direction);
+        Position result = instance.getPosition(direction);
         assertEquals(expResult, result);
     }
 
     /**
-     * Test of gePosition method, of class Position.
+     * Test of getPosition method, of class Position.
      */
     @Test
     public void testGePositionRight() {
         Direction direction = Direction.RIGHT;
         Position instance = new Position(2, 7);
         Position expResult = new Position(2, 8);
-        Position result = instance.gePosition(direction);
+        Position result = instance.getPosition(direction);
         assertEquals(expResult, result);
     }
 
