@@ -133,4 +133,5 @@ public class Board {
     @issues
     condition can put method too long
     warning for each put
+    redéfinir la méthode equals?
  */
