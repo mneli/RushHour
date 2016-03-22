@@ -96,8 +96,8 @@ public class Board {
         int counter = 0;
         while (counter < listPos.size()
                 && getCarAt(listPos.get(counter)) == null
-                && listPos.get(counter).getRow() >= getHeight()
-                && listPos.get(counter).getColumn() >= getWidth()) {
+                && listPos.get(counter).getRow() < getHeight()
+                && listPos.get(counter).getColumn() < getWidth()) {
             counter++;
         }
         return counter == listPos.size();
@@ -115,23 +115,60 @@ public class Board {
         }
     }
 
-    //todo
+    /**
+     * Remove a car from the board. Initialize the cells occupied by the to null
+     *
+     * @param car the car to remove
+     */
+    public void remove(Car car) {
+        List<Position> listPos = car.getPositions();
+        for (Position pos : listPos) {
+            this.grid[pos.getRow()][pos.getColumn()] = null;
+        }
+    }
+
+    /**
+     * Get the car which has the same id as the parameter.
+     *
+     * @param id the car id
+     * @return null if no car on board has the same id as the parameter, else
+     * return the car
+     */
     public Car getCar(char id) {
+        int row = 0, column = 0;
+        boolean contains = false;
+        while (row < getHeight() && !contains) {
+            column = 0;
+            while (column < getWidth() && !contains) {
+                contains = (id == this.grid[row][column].getId());
+                column++;
+            }
+            row++;
+        }
+        if (id == this.grid[row - 1][column - 1].getId())
+            return this.grid[row - 1][column - 1];
         return null;
     }
 
-    //todo
-    public void remove(Car car) {
-    }
-
-    //todo
+    /**
+     * Verify if the car received in parameter can move to the direction
+     * received in parameter.
+     *
+     * @param car the car to move
+     * @param direction the direction to move
+     * @return true if the movement is permitted
+     */
     public boolean canMove(Car car, Direction direction) {
-        return false;
+        List<Position> listPos = car.getPositions();
+        Position destination = car.getCurrentPosition().getPosition(direction);
+        Car newCar = new Car(car.getId(), listPos.size(), car.getOrientation(), destination);
+        return canPut(newCar);
     }
 }
 /*
     @issues
     condition can put method too long
-    warning for each put
+    warning for each put/remove
     redéfinir la méthode equals?
+    explication canMove.. 1 case ou plus?
  */
