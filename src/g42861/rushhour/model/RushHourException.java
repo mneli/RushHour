@@ -8,13 +8,6 @@ package g42861.rushhour.model;
 public class RushHourException extends Exception {
 
     /**
-     * Creates a new instance of <code>RushHourException</code> without detail
-     * message.
-     */
-    public RushHourException() {
-    }
-
-    /**
      * Constructs an instance of <code>RushHourException</code> with the
      * specified detail message.
      *
@@ -24,7 +17,3 @@ public class RushHourException extends Exception {
         super(msg);
     }
 }
-/*
-    @issue
-    constructeur vide à supprimer?
-*/
