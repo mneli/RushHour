@@ -83,31 +83,31 @@ public class BoardTest {
     }
 
     /**
-     * Test of getCar method, of class Board.
-     */
-    @Test
-    public void testGetCar() {
-        System.out.println("getCar");
-        char id = ' ';
-        Board instance = new Board();
-        Car expResult = null;
-        Car result = instance.getCar(id);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of remove method, of class Board.
      */
     @Test
     public void testRemove() {
-        System.out.println("remove");
-        Car car = null;
+        char id = '1';
+        Car car = new Car(id, 3, Orientation.HORIZONTAL, new Position(0, 0));
         Board instance = new Board();
+        instance.put(car);
         instance.remove(car);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Car result = instance.getCar(id);
+        assertTrue(result == null);
+    }
+
+    /**
+     * Test of getCar method, of class Board.
+     */
+    @Test
+    public void testGetCar() {
+        char id = '1';
+        Board instance = new Board();
+        Car car = new Car(id, 2, Orientation.HORIZONTAL, new Position(4, 2));
+        instance.put(car);
+        Car expResult = car;
+        Car result = instance.getCar(id);
+        assertEquals(expResult, result);
     }
 
     /**
