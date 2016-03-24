@@ -5,6 +5,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
+ * Class test of the class Car.
  *
  * @author G42861
  */
@@ -176,8 +177,3 @@ public class CarTest {
         assertFalse(result.contains(position1) && result.contains(position2));
     }
 }
-/*
-    @issue
-    test accesseur nécessaire?
-    les méthodes non triviaux ne doivent pas être testé, indiqué dans les consignes remise II
- */

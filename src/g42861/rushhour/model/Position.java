@@ -1,14 +1,16 @@
 package g42861.rushhour.model;
 
 /**
+ * Class Position. The positions are identified by a row number and a column
+ * number.
  *
  * @author G42861
  * @group B231
  */
 public class Position {
 
-    private int row;
-    private int column;
+    private final int row;
+    private final int column;
 
     /**
      * Construct an instance of Position.
@@ -50,11 +52,11 @@ public class Position {
     }
 
     /**
-     * Get the translated position in the direction next to the current instance
-     * of Position. For example : If the current position is (2,3) and the
+     * Get the next position in the direction next to the current instance of
+     * Position. For example : If the current position is (2,3) and the
      * direction is UP, the translated position would be (1,3)
      *
-     * @param direction the direction of the position translation
+     * @param direction the direction to move
      * @return the new position
      */
     public Position getPosition(Direction direction) {
@@ -71,10 +73,21 @@ public class Position {
                 break;
             case RIGHT:
                 newPosition = new Position(this.row, this.column + 1);
-                break;
-            default:
         }
         return newPosition;
+    }
+
+    /**
+     * Get the hashCode of an instance
+     *
+     * @return the hash
+     */
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 79 * hash + this.row;
+        hash = 79 * hash + this.column;
+        return hash;
     }
 
     /**
@@ -83,6 +96,7 @@ public class Position {
      * @param o the other instance of Position
      * @return true is two positions are structurally equal
      */
+    @Override
     public boolean equals(Object o) {
         if (this == o)
             return true;
@@ -95,10 +109,3 @@ public class Position {
     }
 
 }
-/*
-    @issue
-    warning attributes
-    Overrive nécessaire pour la méthode equals?
-    Méthode hashcode necessaire?
-    javadoc classe?
- */

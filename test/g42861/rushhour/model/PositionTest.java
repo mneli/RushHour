@@ -4,6 +4,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
+ * Class test of the class Position.
  *
  * @author G42861
  */

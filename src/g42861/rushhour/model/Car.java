@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Class Car. An instance of Car is identified by an id, a size, an orientation
+ * and a position.
  *
  * @author G42861
  * @group B231
@@ -34,8 +36,10 @@ public class Car {
      * car of size 2 that occupies the positions (1,2),(1,3) would be (1,2)</li>
      * <li>If the instance orientation is vertical, the current position of a
      * car of size 2 that occupies the positions (1,2),(2,2) would be (1,2)</li>
+     * @throws IllegalArgumentException if the size is smaller than 1
      */
-    public Car(char id, int size, Orientation orientation, Position currentPosition) {
+    public Car(char id, int size, Orientation orientation,
+            Position currentPosition) {
         if (size <= 0)
             throw new IllegalArgumentException("The size must be positive");
 
@@ -90,8 +94,9 @@ public class Car {
      */
     @Override
     public String toString() {
-        return "Car " + this.id + ". Size : " + this.size + ".\nOrientation :"
-                + this.orientation + ". Current position : " + this.currentPosition;
+        return "Car " + this.id + ". Size : " + this.size
+                + ".\nOrientation :" + this.orientation
+                + ". Current position : " + this.currentPosition;
     }
 
     /**
@@ -107,13 +112,17 @@ public class Car {
      */
     public void move(Direction direction) {
         if (this.orientation == Orientation.HORIZONTAL
-                && (direction == Direction.UP || direction == Direction.DOWN)) {
-            throw new IllegalArgumentException("Horizontal orientation, invalid direction");
+                && (direction == Direction.UP
+                || direction == Direction.DOWN)) {
+            throw new IllegalArgumentException(
+                    "Horizontal orientation, invalid direction");
         }
 
         if (this.orientation == Orientation.VERTICAL
-                && (direction == Direction.LEFT || direction == Direction.RIGHT)) {
-            throw new IllegalArgumentException("Vertical orientation, invalid direction");
+                && (direction == Direction.LEFT
+                || direction == Direction.RIGHT)) {
+            throw new IllegalArgumentException(
+                    "Vertical orientation, invalid direction");
         }
 
         this.currentPosition = this.currentPosition.getPosition(direction);
@@ -132,16 +141,19 @@ public class Car {
      * particular order in the list
      */
     public List<Position> getPositions() {
-        List<Position> listPositions = new ArrayList<Position>();
+        List<Position> listPositions;
+        listPositions = new ArrayList<>();
         for (int i = 0; i < this.size; i++) {
             switch (this.orientation) {
                 case HORIZONTAL:
-                    listPositions.add(new Position(this.currentPosition.getRow(), this.currentPosition.getColumn() + i));
+                    listPositions.add(new Position(
+                            this.currentPosition.getRow(),
+                            this.currentPosition.getColumn() + i));
                     break;
                 case VERTICAL:
-                    listPositions.add(new Position(this.currentPosition.getRow() + i, this.currentPosition.getColumn()));
-                    break;
-                default:
+                    listPositions.add(new Position(
+                            this.currentPosition.getRow() + i,
+                            this.currentPosition.getColumn()));
             }
         }
 
