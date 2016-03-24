@@ -11,8 +11,20 @@ package g42861.rushhour.model;
  * @group B231
  */
 public enum Direction {
+    /**
+     * LEFT for movement to the left
+     */
     LEFT,
+    /**
+     * RIGHT for movement to the right
+     */
     RIGHT,
+    /**
+     * UP for movement to up
+     */
     UP,
+    /**
+     * DOWN for movement to down
+     */
     DOWN;
 }
