@@ -96,8 +96,8 @@ public class Board {
         int counter = 0;
         while (counter < listPos.size()
                 && getCarAt(listPos.get(counter)) == null
-                && listPos.get(counter).getRow() < getHeight()
-                && listPos.get(counter).getColumn() < getWidth()) {
+                && (listPos.get(counter).getRow() >= 0 || listPos.get(counter).getRow() < getHeight())
+                && (listPos.get(counter).getColumn() >= 0 || listPos.get(counter).getColumn() < getWidth())) {
             counter++;
         }
         return counter == listPos.size();

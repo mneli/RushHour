@@ -19,7 +19,8 @@ public class CarTest {
      */
     @Test(expected = IllegalArgumentException.class)
     public void testCarCaseSizeNegative() {
-        Car instance = new Car('A', -1, Orientation.HORIZONTAL, new Position(0, 0));
+        Car instance;
+        instance = new Car('A', -1, Orientation.HORIZONTAL, new Position(0, 0));
     }
 
     /**
@@ -27,7 +28,8 @@ public class CarTest {
      */
     @Test(expected = IllegalArgumentException.class)
     public void testCarCaseSize0() {
-        Car instance = new Car('A', 0, Orientation.HORIZONTAL, new Position(0, 0));
+        Car instance;
+        instance = new Car('A', 0, Orientation.HORIZONTAL, new Position(0, 0));
     }
 
     /**
@@ -35,7 +37,8 @@ public class CarTest {
      */
     @Test
     public void testCarCaseSizePositive() {
-        Car instance = new Car('A', 1, Orientation.HORIZONTAL, new Position(0, 0));
+        Car instance;
+        instance = new Car('A', 1, Orientation.HORIZONTAL, new Position(0, 0));
     }
 
     /**
@@ -45,7 +48,8 @@ public class CarTest {
     @Test(expected = IllegalArgumentException.class)
     public void testMoveHorizontalUp() {
         Direction direction = Direction.UP;
-        Car instance = new Car('A', 2, Orientation.HORIZONTAL, new Position(1, 1));
+        Car instance;
+        instance = new Car('A', 2, Orientation.HORIZONTAL, new Position(1, 1));
         instance.move(direction);
     }
 
@@ -56,7 +60,8 @@ public class CarTest {
     @Test(expected = IllegalArgumentException.class)
     public void testMoveHorizontalDown() {
         Direction direction = Direction.DOWN;
-        Car instance = new Car('A', 2, Orientation.HORIZONTAL, new Position(1, 1));
+        Car instance;
+        instance = new Car('A', 2, Orientation.HORIZONTAL, new Position(1, 1));
         instance.move(direction);
     }
 
@@ -67,7 +72,8 @@ public class CarTest {
     @Test(expected = IllegalArgumentException.class)
     public void testMoveVerticalLeft() {
         Direction direction = Direction.LEFT;
-        Car instance = new Car('A', 2, Orientation.VERTICAL, new Position(1, 1));
+        Car instance;
+        instance = new Car('A', 2, Orientation.VERTICAL, new Position(1, 1));
         instance.move(direction);
     }
 
@@ -78,7 +84,8 @@ public class CarTest {
     @Test(expected = IllegalArgumentException.class)
     public void testMoveVerticalRight() {
         Direction direction = Direction.RIGHT;
-        Car instance = new Car('A', 2, Orientation.VERTICAL, new Position(1, 1));
+        Car instance;
+        instance = new Car('A', 2, Orientation.VERTICAL, new Position(1, 1));
         instance.move(direction);
     }
 
@@ -89,7 +96,8 @@ public class CarTest {
     @Test
     public void testMoveHorizontalLeft() {
         Direction direction = Direction.LEFT;
-        Car instance = new Car('A', 2, Orientation.HORIZONTAL, new Position(1, 1));
+        Car instance;
+        instance = new Car('A', 2, Orientation.HORIZONTAL, new Position(1, 1));
         instance.move(direction);
         Position expResult = new Position(1, 0);
         Position result = instance.getCurrentPosition();
@@ -103,7 +111,8 @@ public class CarTest {
     @Test
     public void testMoveHorizontalRight() {
         Direction direction = Direction.RIGHT;
-        Car instance = new Car('A', 2, Orientation.HORIZONTAL, new Position(1, 1));
+        Car instance;
+        instance = new Car('A', 2, Orientation.HORIZONTAL, new Position(1, 1));
         instance.move(direction);
         Position expResult = new Position(1, 2);
         Position result = instance.getCurrentPosition();
@@ -116,7 +125,8 @@ public class CarTest {
     @Test
     public void testMoveVerticalUp() {
         Direction direction = Direction.UP;
-        Car instance = new Car('A', 2, Orientation.VERTICAL, new Position(1, 1));
+        Car instance;
+        instance = new Car('A', 2, Orientation.VERTICAL, new Position(1, 1));
         instance.move(direction);
         Position expResult = new Position(0, 1);
         Position result = instance.getCurrentPosition();
@@ -130,7 +140,8 @@ public class CarTest {
     @Test
     public void testMoveVerticalDown() {
         Direction direction = Direction.DOWN;
-        Car instance = new Car('A', 2, Orientation.VERTICAL, new Position(1, 1));
+        Car instance;
+        instance = new Car('A', 2, Orientation.VERTICAL, new Position(1, 1));
         instance.move(direction);
         Position expResult = new Position(2, 1);
         Position result = instance.getCurrentPosition();
@@ -161,7 +172,8 @@ public class CarTest {
         Position position3 = new Position(3, 2);
         Car instance = new Car('A', 3, Orientation.VERTICAL, position1);
         List<Position> result = instance.getPositions();
-        assertTrue(result.contains(position1) && result.contains(position2) && result.contains(position3));
+        assertTrue(result.contains(position1)
+                && result.contains(position2) && result.contains(position3));
     }
 
     /**

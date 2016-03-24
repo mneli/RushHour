@@ -2,6 +2,7 @@ package g42861.rushhour.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Class Car. An instance of Car is identified by an id, a size, an orientation
@@ -158,6 +159,42 @@ public class Car {
         }
 
         return listPositions;
+    }
+
+    /**
+     * Test if two instance of Car are structurally equal.
+     *
+     * @param o the other instance of Car
+     * @return true is two cars are structurally equal
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+
+        if (!(o instanceof Car))
+            return false;
+
+        Car c = (Car) o;
+        return (this.id == Character.charCount(id)
+                && this.size == c.size
+                && this.orientation == c.orientation
+                && this.currentPosition.equals(c.currentPosition));
+    }
+
+    /**
+     * Get the hashCode of an instance
+     *
+     * @return the hash
+     */
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 43 * hash + this.id;
+        hash = 43 * hash + this.size;
+        hash = 43 * hash + Objects.hashCode(this.orientation);
+        hash = 43 * hash + Objects.hashCode(this.currentPosition);
+        return hash;
     }
 
 }

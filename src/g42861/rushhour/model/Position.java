@@ -78,19 +78,6 @@ public class Position {
     }
 
     /**
-     * Get the hashCode of an instance
-     *
-     * @return the hash
-     */
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 79 * hash + this.row;
-        hash = 79 * hash + this.column;
-        return hash;
-    }
-
-    /**
      * Test if two instance of Position are structurally equal.
      *
      * @param o the other instance of Position
@@ -106,6 +93,19 @@ public class Position {
 
         Position p = (Position) o;
         return (this.row == p.row && this.column == p.column);
+    }
+
+    /**
+     * Get the hashCode of an instance
+     *
+     * @return the hash
+     */
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 79 * hash + this.row;
+        hash = 79 * hash + this.column;
+        return hash;
     }
 
 }
