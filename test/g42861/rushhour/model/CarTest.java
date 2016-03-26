@@ -221,4 +221,44 @@ public class CarTest {
                 && result.contains(position3) && result.contains(position1));
     }
 
+    /**
+     * Test of equals method, of class Car.
+     */
+    @Test
+    public void testEquals1() {
+        Object o;
+        o = new Car('A', 2, Orientation.HORIZONTAL, new Position(0, 0));
+        Car instance;
+        instance = new Car('A', 2, Orientation.HORIZONTAL, new Position(0, 0));
+        boolean expResult = true;
+        boolean result = instance.equals(o);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of equals method, of class Car.
+     */
+    @Test
+    public void testEquals2() {
+        Car instance;
+        instance = new Car('A', 2, Orientation.HORIZONTAL, new Position(0, 0));
+        Object o = instance;
+        boolean expResult = true;
+        boolean result = instance.equals(o);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of hashCode method, of class Car.
+     */
+    @Test
+    public void testHashCode() {
+        Position currentPosition = new Position(0, 0);
+        Car instance1 = new Car('A', 2, Orientation.HORIZONTAL, currentPosition);
+        Car instance2 = new Car('A', 2, Orientation.HORIZONTAL, currentPosition);
+        int expResult = instance1.hashCode();
+        int result = instance2.hashCode();
+        assertEquals(expResult, result);
+    }
+
 }

@@ -176,7 +176,7 @@ public class Car {
             return false;
 
         Car c = (Car) o;
-        return (this.id == Character.charCount(id)
+        return (this.id == c.id
                 && this.size == c.size
                 && this.orientation == c.orientation
                 && this.currentPosition.equals(c.currentPosition));

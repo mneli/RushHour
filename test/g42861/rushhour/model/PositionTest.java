@@ -83,4 +83,40 @@ public class PositionTest {
         assertEquals(expResult, result);
     }
 
+    /**
+     * Test of equals method, of class Position.
+     */
+    @Test
+    public void testEquals1() {
+        Position instance = new Position(0, 0);
+        Object o = instance;
+        boolean expResult = true;
+        boolean result = instance.equals(o);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of equals method, of class Position.
+     */
+    @Test
+    public void testEquals2() {
+        Object o = new Position(0, 0);
+        Position instance = new Position(0, 0);
+        boolean expResult = true;
+        boolean result = instance.equals(o);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of hashCode method, of class Position.
+     */
+    @Test
+    public void testHashCode() {
+        Position instance1 = new Position(0, 0);
+        Position instance2 = new Position(0, 0);
+        int expResult = instance1.hashCode();
+        int result = instance2.hashCode();
+        assertEquals(expResult, result);
+    }
+
 }
