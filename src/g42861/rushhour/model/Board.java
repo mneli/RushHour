@@ -17,16 +17,23 @@ public class Board {
      *
      * @param height the number of rows of the board
      * @param width the number of columns of the board
-     * @param exit the position of the exit
+     * @param exit the position of the exit (for ease of coding, we've decided
+     * that the exit position must be on the right border of the board)
+     * @throws IllegalArgumentException if <li>height smaller than 1</li>
+     * <li>width smaller than 1</li>
+     * <li>exit position is any any corner or not at the right border</li>
      */
     public Board(int height, int width, Position exit) {
-        if (height <= 0)
+        if (height <= 0) {
             throw new IllegalArgumentException("Invalid height");
-        if (width <= 0)
+        }
+        if (width <= 0) {
             throw new IllegalArgumentException("Invalid width");
+        }
         if ((exit.getRow() <= 0 || exit.getRow() >= height - 1)
-                && (exit.getColumn() != width - 1))
+                && (exit.getColumn() != width - 1)) {
             throw new IllegalArgumentException("Invalid exit position");
+        }
 
         this.grid = new Car[height][width];
         this.exit = exit;
@@ -96,8 +103,10 @@ public class Board {
         int counter = 0;
         while (counter < listPos.size()
                 && getCarAt(listPos.get(counter)) == null
-                && (listPos.get(counter).getRow() >= 0 || listPos.get(counter).getRow() < getHeight())
-                && (listPos.get(counter).getColumn() >= 0 || listPos.get(counter).getColumn() < getWidth())) {
+                && (listPos.get(counter).getRow() >= 0
+                || listPos.get(counter).getRow() < getHeight())
+                && (listPos.get(counter).getColumn() >= 0
+                || listPos.get(counter).getColumn() < getWidth())) {
             counter++;
         }
         return counter == listPos.size();
@@ -116,7 +125,8 @@ public class Board {
     }
 
     /**
-     * Remove a car from the board. Initialize the cells occupied by the to null
+     * Remove a car from the board. Initialize the cells occupied by the car to
+     * null
      *
      * @param car the car to remove
      */
@@ -145,8 +155,9 @@ public class Board {
             }
             row++;
         }
-        if (id == this.grid[row - 1][column - 1].getId())
+        if (id == this.grid[row - 1][column - 1].getId()) {
             return this.grid[row - 1][column - 1];
+        }
         return null;
     }
 
@@ -165,10 +176,3 @@ public class Board {
         return canPut(newCar);
     }
 }
-/*
-    @issues
-    condition can put method too long
-    warning for each put/remove
-    redéfinir la méthode equals?
-    explication canMove.. 1 case ou plus?
- */

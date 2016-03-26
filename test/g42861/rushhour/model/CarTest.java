@@ -149,6 +149,34 @@ public class CarTest {
     }
 
     /**
+     * Test of getPositions method, of class Car. Verification of returned list
+     * size
+     */
+    @Test
+    public void testGetPositionsListSize1() {
+        Car instance;
+        instance = new Car('A', 1, Orientation.HORIZONTAL, new Position(0, 0));
+        List<Position> listPos = instance.getPositions();
+        int expResult = 1;
+        int result = listPos.size();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of getPositions method, of class Car. Verification of returned list
+     * size
+     */
+    @Test
+    public void testGetPositionsListSize2() {
+        Car instance;
+        instance = new Car('A', 3, Orientation.VERTICAL, new Position(0, 0));
+        List<Position> listPos = instance.getPositions();
+        int expResult = 3;
+        int result = listPos.size();
+        assertEquals(expResult, result);
+    }
+
+    /**
      * Test of getPositions method, of class Car. Case car of size 2 oriented
      * horizontally.
      */
@@ -170,22 +198,27 @@ public class CarTest {
         Position position1 = new Position(1, 2);
         Position position2 = new Position(2, 2);
         Position position3 = new Position(3, 2);
-        Car instance = new Car('A', 3, Orientation.VERTICAL, position1);
+        Car instance;
+        instance = new Car('A', 3, Orientation.VERTICAL, new Position(1, 2));
         List<Position> result = instance.getPositions();
         assertTrue(result.contains(position1)
                 && result.contains(position2) && result.contains(position3));
     }
 
     /**
-     * Test of getPositions method, of class Car. Case car of size 2 oriented
-     * horizontally. AssertFalse.
+     * Test of getPositions method, of class Car. Case car of size 3 oriented
+     * vertically. Random order
      */
     @Test
-    public void testGetPositionsAssertFalse() {
+    public void testGetPositionsVerticalRandomOrder() {
         Position position1 = new Position(1, 2);
-        Position position2 = new Position(2, 3);
-        Car instance = new Car('A', 2, Orientation.HORIZONTAL, position1);
+        Position position2 = new Position(2, 2);
+        Position position3 = new Position(3, 2);
+        Car instance;
+        instance = new Car('A', 3, Orientation.VERTICAL, new Position(1, 2));
         List<Position> result = instance.getPositions();
-        assertFalse(result.contains(position1) && result.contains(position2));
+        assertTrue(result.contains(position2)
+                && result.contains(position3) && result.contains(position1));
     }
+
 }
