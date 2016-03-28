@@ -10,6 +10,7 @@ import static org.junit.Assert.*;
  */
 public class PositionTest {
 
+    // CLR : à quoi sert-il ?
     public PositionTest() {
     }
 
