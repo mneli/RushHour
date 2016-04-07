@@ -6,6 +6,7 @@ import g42861.rushhour.model.Orientation;
 import g42861.rushhour.model.Position;
 
 /**
+ * Class Display. Methods of this class can be used to display the board.
  *
  * @author G42861
  * @group B231

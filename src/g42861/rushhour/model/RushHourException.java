@@ -1,6 +1,8 @@
 package g42861.rushhour.model;
 
 /**
+ * Class RushHourException, a sub class of Exception. Used to throw exception
+ * controlled by the compiler.
  *
  * @author G42861
  * @group B231

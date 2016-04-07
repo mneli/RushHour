@@ -3,12 +3,14 @@ package g42861.rushhour.model;
 import java.util.List;
 
 /**
+ * Class Board. An instance of Board is represented by a grid and an exit
+ * position inside the grid.
  *
  * @author G42861
  * @group B231
  */
 public class Board {
-    
+
     private Car[][] grid;
     private Position exit;
 
@@ -34,7 +36,7 @@ public class Board {
                 && (exit.getColumn() != width - 1)) {
             throw new IllegalArgumentException("Invalid exit position");
         }
-        
+
         this.grid = new Car[height][width];
         this.exit = exit;
     }
