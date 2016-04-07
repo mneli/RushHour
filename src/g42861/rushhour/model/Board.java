@@ -8,7 +8,7 @@ import java.util.List;
  * @group B231
  */
 public class Board {
-
+    
     private Car[][] grid;
     private Position exit;
 
@@ -34,7 +34,7 @@ public class Board {
                 && (exit.getColumn() != width - 1)) {
             throw new IllegalArgumentException("Invalid exit position");
         }
-
+        
         this.grid = new Car[height][width];
         this.exit = exit;
     }
@@ -100,16 +100,16 @@ public class Board {
      */
     public boolean canPut(Car car) {
         List<Position> listPos = car.getPositions();
-        int counter = 0;
-        while (counter < listPos.size()
-                && getCarAt(listPos.get(counter)) == null
-                && (listPos.get(counter).getRow() >= 0
-                || listPos.get(counter).getRow() < getHeight())
-                && (listPos.get(counter).getColumn() >= 0
-                || listPos.get(counter).getColumn() < getWidth())) {
-            counter++;
+        int index = 0;
+        while (index < listPos.size()
+                && (listPos.get(index).getRow() >= 0
+                && listPos.get(index).getRow() < getHeight())
+                && (listPos.get(index).getColumn() >= 0
+                && listPos.get(index).getColumn() < getWidth())
+                && getCarAt(listPos.get(index)) == null) {
+            index++;
         }
-        return counter == listPos.size();
+        return index == listPos.size();
     }
 
     /**
@@ -118,6 +118,14 @@ public class Board {
      * @param car the instance of Car to place on board
      */
     public void put(Car car) {
+        /*
+        "Ajoutez une méthode put(Car car) qui reçoit une voiture en paramètre et
+        place cette voiture sur chaque case du plateau correspondant à une position
+        de la voiture. Cette méthode peut supposer que la place est libre."
+        
+        Peut-on également supposer qu'aucune des positions occupé par la voiture 
+        ne se trouve hors plateau?
+         */
         List<Position> listPos = car.getPositions();
         for (Position pos : listPos) {
             this.grid[pos.getRow()][pos.getColumn()] = car;
@@ -146,19 +154,22 @@ public class Board {
      */
     public Car getCar(char id) {
         int row = 0, column = 0;
+        Car car = null;
         boolean contains = false;
         while (row < getHeight() && !contains) {
             column = 0;
             while (column < getWidth() && !contains) {
-                contains = (id == this.grid[row][column].getId());
+                car = getCarAt(new Position(row, column));
+                if (car != null)
+                    contains = (id == this.grid[row][column].getId());
                 column++;
             }
             row++;
         }
-        if (id == this.grid[row - 1][column - 1].getId()) {
+        /*if (id == this.grid[row - 1][column - 1].getId()) {
             return this.grid[row - 1][column - 1];
-        }
-        return null;
+        }*/
+        return car;
     }
 
     /**
@@ -170,9 +181,13 @@ public class Board {
      * @return true if the movement is permitted
      */
     public boolean canMove(Car car, Direction direction) {
+        boolean canMove = false;
         List<Position> listPos = car.getPositions();
         Position destination = car.getCurrentPosition().getPosition(direction);
         Car newCar = new Car(car.getId(), listPos.size(), car.getOrientation(), destination);
-        return canPut(newCar);
+        remove(car);
+        canMove = canPut(newCar);
+        put(car);
+        return canMove;
     }
 }
