@@ -19,8 +19,8 @@ public class Board {
      *
      * @param height the number of rows of the board
      * @param width the number of columns of the board
-     * @param exit the position of the exit (for ease of coding, we've decided
-     * that the exit position must be on the right border of the board)
+     * @param exit the position of the exit. The exit position must be on a
+     * border and can't be on any corner
      * @throws IllegalArgumentException if <li>height smaller than 1</li>
      * <li>width smaller than 1</li>
      * <li>exit position is any any corner or not at the right border</li>
@@ -32,8 +32,22 @@ public class Board {
         if (width <= 0) {
             throw new IllegalArgumentException("Invalid width");
         }
-        if ((exit.getRow() <= 0 || exit.getRow() >= height - 1)
-                && (exit.getColumn() != width - 1)) {
+
+        if (exit.getRow() != 0 && exit.getRow() != height - 1
+                && exit.getColumn() != 0 && exit.getColumn() != width - 1) {
+            throw new IllegalArgumentException("Invalid exit position");
+        }
+
+        if (exit.getRow() == 0 && (exit.getColumn() <= 0 || exit.getColumn() >= width - 1)) {
+            throw new IllegalArgumentException("Invalid exit position");
+        }
+        if (exit.getRow() == height - 1 && (exit.getColumn() <= 0 || exit.getColumn() >= width - 1)) {
+            throw new IllegalArgumentException("Invalid exit position");
+        }
+        if (exit.getColumn() == 0 && (exit.getRow() <= 0 || exit.getRow() >= height - 1)) {
+            throw new IllegalArgumentException("Invalid exit position");
+        }
+        if (exit.getColumn() == width - 1 && (exit.getRow() <= 0 || exit.getRow() >= height - 1)) {
             throw new IllegalArgumentException("Invalid exit position");
         }
 

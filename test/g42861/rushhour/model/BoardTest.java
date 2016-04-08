@@ -32,38 +32,84 @@ public class BoardTest {
     }
 
     /**
-     * Test of constructor, of class Board. Exit row 0
+     * Test of constructor, of class Board. Exit not on any border
      */
     @Test(expected = IllegalArgumentException.class)
-    public void testBoardExitRowColumnInvalid1() {
-        Position exit = new Position(0, 6);
+    public void testBoardExitMiddle() {
+        Position exit = new Position(3, 3);
         Board instance = new Board(6, 6, exit);
     }
 
     /**
-     * Test of constructor, of class Board. Exit row 5
+     * Test of constructor, of class Board. Exit upper left corner
      */
     @Test(expected = IllegalArgumentException.class)
-    public void testBoardExitRowColumnInvalid2() {
-        Position exit = new Position(5, 6);
+    public void testBoardExitCornerUpperLeft() {
+        Position exit = new Position(0, 0);
         Board instance = new Board(6, 6, exit);
     }
 
     /**
-     * Test of constructor, of class Board.
+     * Test of constructor, of class Board. Exit upper right corner
      */
-    @Test
-    public void testBoard() {
-        Position exit = new Position(3, 6);
-        Board instance = new Board(7, 7, exit);
+    @Test(expected = IllegalArgumentException.class)
+    public void testBoardExitCornerUpperRight() {
+        Position exit = new Position(0, 5);
+        Board instance = new Board(6, 6, exit);
     }
 
     /**
-     * Test of getExit method, of class Board.
+     * Test of constructor, of class Board. Exit lower left corner
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void testBoardExitCornerLowerLeft() {
+        Position exit = new Position(5, 0);
+        Board instance = new Board(6, 6, exit);
+    }
+
+    /**
+     * Test of constructor, of class Board. Exit lower right corner
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void testBoardExitCornerLowerRight() {
+        Position exit = new Position(5, 5);
+        Board instance = new Board(6, 6, exit);
+    }
+
+    /**
+     * Test of constructor, of class Board. Left border
      */
     @Test
-    public void testGetExit() {
-        //to remove
+    public void testBoardBorderLeft() {
+        Position exit = new Position(3, 0);
+        Board instance = new Board(6, 6, exit);
+    }
+
+    /**
+     * Test of constructor, of class Board. left border
+     */
+    @Test
+    public void testBoardBorderRight() {
+        Position exit = new Position(3, 5);
+        Board instance = new Board(6, 6, exit);
+    }
+
+    /**
+     * Test of constructor, of class Board. left border
+     */
+    @Test
+    public void testBoardBorderUp() {
+        Position exit = new Position(0, 3);
+        Board instance = new Board(6, 6, exit);
+    }
+
+    /**
+     * Test of constructor, of class Board. left border
+     */
+    @Test
+    public void testBoardBorderDown() {
+        Position exit = new Position(5, 3);
+        Board instance = new Board(6, 6, exit);
     }
 
     /**
