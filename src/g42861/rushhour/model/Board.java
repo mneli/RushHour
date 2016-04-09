@@ -199,8 +199,8 @@ public class Board {
     public boolean canMove(Car car, Direction direction) {
         boolean canMove = false;
         List<Position> listPos = car.getPositions();
-        Position destination = car.getCurrentPosition().getPosition(direction);
-        Car newCar = new Car(car.getId(), listPos.size(), car.getOrientation(), destination);
+        Car newCar = new Car(car.getId(), listPos.size(), car.getOrientation(), car.getCurrentPosition());
+        newCar.move(direction);
         remove(car);
         canMove = canPut(newCar);
         put(car);

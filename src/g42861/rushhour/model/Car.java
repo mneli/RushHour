@@ -101,11 +101,10 @@ public class Car {
     }
 
     /**
-     * Set the translated position in the direction next to the current instance
-     * of Position to the currentPosition. For example : If the currentPosition
-     * is (2,3) and the direction is UP, the translated position would be (1,3)
+     * Move the current instance of car one step to the direction received in
+     * parameter.
      *
-     * @param direction the direction of the position translation
+     * @param direction the direction that the car should be moved
      * @throws IllegalArgumentException if the orientation of the current
      * instance of Car is incompatible with the direction received in parameter.
      * <br>For example : If the car is oriented horizontally, the direction

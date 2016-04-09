@@ -66,10 +66,7 @@ public class RushHourGame {
      * @throws RushHourException
      */
     public void move(char id, Direction direction) throws RushHourException {
-        /*
-        L'incompatibilté entre la direction et l'orientation sont géré par la 
-        classe Position et Car, doit-on la gérer de nouveau avec RushHourException ?
-         */
+        //RushHourException inutile?
         Car car = this.board.getCar(id);
         if (car != null && this.board.canMove(car, direction)) {
             this.board.remove(car);
@@ -85,6 +82,7 @@ public class RushHourGame {
      */
     public boolean isOver() throws RushHourException {
         //RushHourException inutile?
-        return this.board.getCarAt(this.board.getExit()).equals(this.redCar);
+        return this.board.getCarAt(this.board.getExit()) != null
+                && this.board.getCarAt(this.board.getExit()).equals(this.redCar);
     }
 }
