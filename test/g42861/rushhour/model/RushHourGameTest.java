@@ -155,6 +155,24 @@ public class RushHourGameTest {
     }
 
     /**
+     * Test of move method, of class RushHourGame. Car not on board
+     *
+     * @throws java.lang.Exception
+     */
+    @Test(expected = RushHourException.class)
+    public void testMoveNull() throws Exception {
+
+        Position exit = new Position(0, 2);
+        Position posRedCar = new Position(2, 2);
+        Car redCar = new Car('R', 2, Orientation.VERTICAL, posRedCar);
+        List<Car> cars = new ArrayList<>();
+        RushHourGame instance = new RushHourGame(6, 6, exit, cars, redCar);
+        char id = 'A';
+        Direction direction = Direction.DOWN;
+        instance.move(id, direction);
+    }
+
+    /**
      * Test of isOver method, of class RushHourGame. Red car on exit
      *
      * @throws java.lang.Exception

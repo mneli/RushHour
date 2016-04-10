@@ -169,7 +169,7 @@ public class Board {
      * return the car
      */
     public Car getCar(char id) {
-        int row = 0, column = 0;
+        int row = 0, column;
         Car car = null;
         boolean contains = false;
         while (row < getHeight() && !contains) {
@@ -182,10 +182,9 @@ public class Board {
             }
             row++;
         }
-        /*if (id == this.grid[row - 1][column - 1].getId()) {
-            return this.grid[row - 1][column - 1];
-        }*/
-        return car;
+        if (contains)
+            return car;
+        return null;
     }
 
     /**

@@ -115,14 +115,12 @@ public class Car {
                 && (direction == Direction.UP
                 || direction == Direction.DOWN)) {
             throw new IllegalArgumentException(
-                    "Horizontal orientation, invalid direction");
-        }
-
-        if (this.orientation == Orientation.VERTICAL
+                    "Car oriented horizontally, invalid direction.");
+        } else if (this.orientation == Orientation.VERTICAL
                 && (direction == Direction.LEFT
                 || direction == Direction.RIGHT)) {
             throw new IllegalArgumentException(
-                    "Vertical orientation, invalid direction");
+                    "Car oriented vertically, invalid direction.");
         }
 
         this.currentPosition = this.currentPosition.getPosition(direction);

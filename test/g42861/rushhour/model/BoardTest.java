@@ -357,6 +357,20 @@ public class BoardTest {
     }
 
     /**
+     * Test of getCar method, of class Board. Null
+     */
+    @Test
+    public void testGetCarNull() {
+        char id = '1';
+        Board instance = new Board();
+        Car car = new Car(id, 2, Orientation.HORIZONTAL, new Position(5, 4));
+        instance.put(car);
+        Car expResult = null;
+        Car result = instance.getCar('3');
+        assertEquals(expResult, result);
+    }
+
+    /**
      * Test of getCar method, of class Board.
      */
     @Test

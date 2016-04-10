@@ -63,16 +63,22 @@ public class RushHourGame {
      *
      * @param id the identity of the car to move
      * @param direction the direction the car have to move
-     * @throws RushHourException
+     * @throws RushHourException if the id doesn't exist on board or if the
+     * can't be moved to the direction wanted
      */
     public void move(char id, Direction direction) throws RushHourException {
-        //RushHourException inutile?
         Car car = this.board.getCar(id);
-        if (car != null && this.board.canMove(car, direction)) {
-            this.board.remove(car);
-            car.move(direction);
-            this.board.put(car);
+        if (car == null) {
+            throw new RushHourException("Invalid car id, car doesn't exist on board.");
         }
+        if (!this.board.canMove(car, direction)) {
+            throw new RushHourException("The car " + id + " can't be moved to "
+                    + direction.toString().toLowerCase()
+                    + ". Obstacle or boundary.");
+        }
+        this.board.remove(car);
+        car.move(direction);
+        this.board.put(car);
     }
 
     /**
