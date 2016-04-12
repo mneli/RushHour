@@ -84,9 +84,9 @@ public class RushHourGame {
     /**
      * Determine if the game is over
      *
-     * @return @throws RushHourException
+     * @return true if the exit position contains the redCar
      */
-    public boolean isOver() throws RushHourException {
+    public boolean isOver() {
         //RushHourException inutile?
         return this.board.getCarAt(this.board.getExit()) != null
                 && this.board.getCarAt(this.board.getExit()).equals(this.redCar);

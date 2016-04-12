@@ -13,9 +13,9 @@ import java.util.Objects;
  */
 public class Car {
 
-    private char id;
-    private int size;
-    private Orientation orientation;
+    private final char id;
+    private final int size;
+    private final Orientation orientation;
     private Position currentPosition;
 
     /**

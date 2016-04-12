@@ -3,13 +3,13 @@ package g42861.rushhour;
 import g42861.rushhour.model.Car;
 import g42861.rushhour.model.Orientation;
 import g42861.rushhour.model.Position;
-import g42861.rushhour.model.RushHourException;
 import g42861.rushhour.model.RushHourGame;
 import g42861.rushhour.view.RushHourView;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Main class of RushHourGame. Used to start the game
  *
  * @author G42861
  * @group B231
@@ -18,9 +18,8 @@ public class RushHour {
 
     /**
      * @param args the command line arguments
-     * @throws g42861.rushhour.model.RushHourException
      */
-    public static void main(String[] args) throws RushHourException {
+    public static void main(String[] args) {
 
         Position exit = new Position(2, 5);
 
@@ -43,7 +42,12 @@ public class RushHour {
 
         Car redCar = new Car('R', 2, Orientation.HORIZONTAL, new Position(2, 1));
 
-        RushHourGame game = new RushHourGame(6, 6, exit, cars, redCar);
+        RushHourGame game = null;
+        try {
+            game = new RushHourGame(6, 6, exit, cars, redCar);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
         RushHourView view = new RushHourView(game);
 

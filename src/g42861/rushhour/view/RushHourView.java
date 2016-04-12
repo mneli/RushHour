@@ -1,25 +1,34 @@
 package g42861.rushhour.view;
 
 import g42861.rushhour.model.Direction;
-import g42861.rushhour.model.RushHourException;
 import g42861.rushhour.model.RushHourGame;
-import java.util.Scanner;
 
 /**
+ * Class RushHourView. Display the game.
  *
  * @author G42861
  * @group B231
  */
 public class RushHourView {
 
-    private RushHourGame game;
+    private final RushHourGame game;
 
+    /**
+     * Construct an instance of RushHourView.
+     *
+     * @param game an instance of RushHourGame
+     */
     public RushHourView(RushHourGame game) {
         this.game = game;
     }
 
-    public void play() throws RushHourException {
-        System.out.println("Game start");
+    /**
+     * This method lets a player play one session of RushHourGame
+     */
+    public void play() {
+        System.out.println("Rush Hour Game!");
+        System.out.println("The red car represented by R have to reach "
+                + "the exit marked with an X to finish the game.");
         Display.displayBoard(this.game.getBoard());
         while (!game.isOver()) {
             boolean invalidEntry = true;
@@ -27,9 +36,10 @@ public class RushHourView {
             while (invalidEntry) {
                 try {
                     System.out.print("Choose the car to move : ");
-                    char id = scanChar("Enter car id : ");
+                    char id = Keyboard.scanChar("Enter car id : ");
                     System.out.print("Choose the direction to move : ");
-                    Direction direction = scanDirection("Choose between left, right, up or down : ");
+                    Direction direction = Keyboard.scanDirection("Choose "
+                            + "between left, right, up or down : ");
 
                     this.game.move(id, direction);
                     invalidEntry = false;
@@ -38,54 +48,10 @@ public class RushHourView {
                     System.out.println(e.getMessage());
                 }
             }
-
-            //afficher plateau
             Display.displayBoard(this.game.getBoard());
         }
+        System.out.println("The red car reached the exit !");
 
     }
 
-    public static char scanChar(String msg) {
-        Scanner scanner = new Scanner(System.in);
-        while (!scanner.hasNext()) {
-            System.out.print(msg);
-            scanner.next();
-        }
-        return scanner.next().toUpperCase().charAt(0);
-    }
-
-    public static String scanWord() {
-        Scanner scanner = new Scanner(System.in);
-        while (!scanner.hasNext()) {
-            scanner.next();
-        }
-        return scanner.next();
-    }
-
-    public Direction scanDirection(String msg) {
-        char firstLetter = scanChar(msg);
-        while (firstLetter != 'U'
-                && firstLetter != 'D'
-                && firstLetter != 'L'
-                && firstLetter != 'R') {
-            System.out.print(msg);
-            firstLetter = scanChar(msg);
-        }
-
-        Direction direction = null;
-        switch (firstLetter) {
-            case 'U':
-                direction = Direction.UP;
-                break;
-            case 'D':
-                direction = Direction.DOWN;
-                break;
-            case 'L':
-                direction = Direction.LEFT;
-                break;
-            case 'R':
-                direction = Direction.RIGHT;
-        }
-        return direction;
-    }
 }

@@ -196,7 +196,7 @@ public class Board {
      * @return true if the movement is permitted
      */
     public boolean canMove(Car car, Direction direction) {
-        boolean canMove = false;
+        boolean canMove;
         List<Position> listPos = car.getPositions();
         Car newCar = new Car(car.getId(), listPos.size(), car.getOrientation(), car.getCurrentPosition());
         newCar.move(direction);

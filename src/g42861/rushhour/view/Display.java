@@ -6,7 +6,8 @@ import g42861.rushhour.model.Orientation;
 import g42861.rushhour.model.Position;
 
 /**
- * Class Display. Methods of this class can be used to display the board.
+ * Class Display. Methods of this class can be used to display the board and
+ * it's content.
  *
  * @author G42861
  * @group B231
@@ -21,15 +22,15 @@ public class Display {
         board.put(car1);
         board.put(car2);
         board.put(car3);
-        displayBoard(board);
+        displayBoardV2(board);
     }
 
     /**
-     * Display the board with cars
+     * Display the board with cars. First version
      *
      * @param board the board to display
      */
-    public static void displayBoard(Board board) {
+    public static void displayBoardV2(Board board) {
         System.out.print(" ");
         for (int i = 0; i < board.getWidth(); i++) {
             System.out.print("_ ");
@@ -59,6 +60,109 @@ public class Display {
         System.out.print(" ");
         for (int i = 0; i < board.getWidth(); i++) {
             System.out.print("_ ");
+        }
+        System.out.println();
+    }
+
+    /**
+     * Display the board with cars. Second version
+     *
+     * @param board the board to display
+     */
+    public static void displayBoardV3(Board board) {
+        System.out.print(" ");
+        for (int i = 0; i < board.getWidth(); i++) {
+            System.out.print("___");
+        }
+
+        System.out.println();
+
+        Car car;
+        for (int row = 0; row < board.getHeight(); row++) {
+            System.out.print("|");
+            for (int i = 0; i < board.getWidth(); i++) {
+                System.out.print("   ");
+            }
+            System.out.println("|");
+            System.out.print("|");
+            boolean showExit = false;
+            for (int column = 0; column < board.getWidth(); column++) {
+                car = board.getCarAt(new Position(row, column));
+                if (car != null) {
+                    System.out.print(" " + car.getId() + " ");
+                } else {
+                    System.out.print("   ");
+                }
+                showExit = (row == board.getExit().getRow() && column == board.getExit().getColumn());
+
+            }
+            if (showExit)
+                System.out.println("X");
+            else
+                System.out.println("|");
+
+            System.out.print("|");
+            for (int i = 0; i < board.getWidth(); i++) {
+                System.out.print("   ");
+            }
+            System.out.println("|");
+        }
+        System.out.print(" ");
+        for (int i = 0; i < board.getWidth(); i++) {
+            System.out.print("___");
+        }
+        System.out.println();
+    }
+
+    /**
+     * Display the board with cars. Third version, colored version
+     *
+     * @param board the board to display
+     */
+    public static void displayBoard(Board board) {
+        System.out.print(" ");
+        for (int i = 0; i < board.getWidth(); i++) {
+            System.out.print(Color.toPurple("___"));
+        }
+
+        System.out.println();
+
+        Car car;
+        for (int row = 0; row < board.getHeight(); row++) {
+            System.out.print(Color.toPurple(Color.toPurple("|")));
+            for (int i = 0; i < board.getWidth(); i++) {
+                System.out.print("   ");
+            }
+            System.out.println(Color.toPurple("|"));
+            System.out.print(Color.toPurple("|"));
+            boolean showExit = false;
+            for (int column = 0; column < board.getWidth(); column++) {
+                car = board.getCarAt(new Position(row, column));
+                if (car != null) {
+                    if (car.getId() == 'R')
+                        System.out.print(Color.toRed(" " + car.getId() + " "));
+                    else
+                        System.out.print(Color.toCyan(" " + car.getId() + " "));
+                } else {
+                    System.out.print("   ");
+                }
+                showExit = (row == board.getExit().getRow() && column == board.getExit().getColumn());
+
+            }
+            if (showExit)
+                System.out.println(Color.toGreen("X"));
+            else
+                System.out.println(Color.toPurple("|"));
+
+            System.out.print(Color.toPurple("|"));
+            for (int i = 0; i < board.getWidth(); i++) {
+                System.out.print("   ");
+            }
+            System.out.println(Color.toPurple("|"));
+        }
+        System.out.print(" ");
+        for (int i = 0; i < board.getWidth(); i++) {
+            System.out.print(Color.toPurple("___"));
         }
         System.out.println();
     }
