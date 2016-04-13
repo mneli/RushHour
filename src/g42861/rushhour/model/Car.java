@@ -9,7 +9,6 @@ import java.util.Objects;
  * and a position.
  *
  * @author G42861
- * @group B231
  */
 public class Car {
 

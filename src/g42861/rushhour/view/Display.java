@@ -10,7 +10,6 @@ import g42861.rushhour.model.Position;
  * it's content.
  *
  * @author G42861
- * @group B231
  */
 public class Display {
 

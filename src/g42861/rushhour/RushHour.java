@@ -12,7 +12,6 @@ import java.util.List;
  * Main class of RushHourGame. Used to start the game
  *
  * @author G42861
- * @group B231
  */
 public class RushHour {
 

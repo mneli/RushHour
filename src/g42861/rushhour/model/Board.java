@@ -7,7 +7,6 @@ import java.util.List;
  * position inside the grid.
  *
  * @author G42861
- * @group B231
  */
 public class Board {
 

@@ -7,7 +7,6 @@ import java.util.List;
  * class.
  *
  * @author G42861
- * @group B231
  */
 public class RushHourGame {
 

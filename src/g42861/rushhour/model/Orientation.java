@@ -6,15 +6,14 @@ package g42861.rushhour.model;
  * <li>VERTICAL for vertical orientation</li>
  *
  * @author G42861
- * @group B231
  */
 public enum Orientation {
     /**
-     * HORIZONTAL for horizontal orientation
+     * for horizontal orientation
      */
     HORIZONTAL,
     /**
-     * VERTICAL for vertical orientation
+     * for vertical orientation
      */
     VERTICAL;
 }

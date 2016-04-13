@@ -7,7 +7,6 @@ import g42861.rushhour.model.RushHourGame;
  * Class RushHourView. Display the game.
  *
  * @author G42861
- * @group B231
  */
 public class RushHourView {
 

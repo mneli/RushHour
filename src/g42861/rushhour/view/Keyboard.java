@@ -6,7 +6,6 @@ import g42861.rushhour.model.Direction;
  * Class Keyboard, Used to interact with the user via the keyboard.
  *
  * @author G42861
- * @group B231
  */
 public class Keyboard {
 

@@ -5,7 +5,6 @@ package g42861.rushhour.model;
  * controlled by the compiler.
  *
  * @author G42861
- * @group B231
  */
 public class RushHourException extends Exception {
 
