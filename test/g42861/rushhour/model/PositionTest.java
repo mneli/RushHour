@@ -11,13 +11,6 @@ import static org.junit.Assert.*;
 public class PositionTest {
 
     /**
-     * This method is used to display the class name for the automated test V3.
-     */
-    public PositionTest() {
-        System.out.println("PositionTest");
-    }
-
-    /**
      * Test of getRow method, of class Position.
      */
     @Test
