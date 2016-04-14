@@ -85,7 +85,7 @@ public class Display {
      * @param board the board
      * @param row the row number of the cell
      * @param column the column number of the cell
-     * @return
+     * @return true if the position to display is the same as the exit position
      */
     private static boolean displayBoardCell(Board board, int row, int column) {
         Car car = board.getCarAt(new Position(row, column));
@@ -97,6 +97,7 @@ public class Display {
         } else {
             System.out.print("   ");
         }
-        return (row == board.getExit().getRow() && column == board.getExit().getColumn());
+        return (row == board.getExit().getRow()
+                && column == board.getExit().getColumn());
     }
 }

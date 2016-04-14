@@ -39,7 +39,8 @@ public class RushHour {
         cars.add(car6);
         cars.add(car7);
 
-        Car redCar = new Car('R', 2, Orientation.HORIZONTAL, new Position(2, 1));
+        Car redCar;
+        redCar = new Car('R', 2, Orientation.HORIZONTAL, new Position(2, 1));
 
         RushHourGame game = null;
         try {
