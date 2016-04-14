@@ -11,8 +11,11 @@ import static org.junit.Assert.*;
  */
 public class CarTest {
 
+    /**
+     * This method is used to display the class name for the automated test V3.
+     */
     public CarTest() {
-        //to remove?
+        System.out.println("CarTest");
     }
 
     /**

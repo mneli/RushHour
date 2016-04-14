@@ -68,7 +68,8 @@ public class RushHourGame {
     public void move(char id, Direction direction) throws RushHourException {
         Car car = this.board.getCar(id);
         if (car == null) {
-            throw new RushHourException("Invalid car id, car doesn't exist on board.");
+            throw new RushHourException("Invalid car id, "
+                    + "car doesn't exist on board.");
         }
         if (!this.board.canMove(car, direction)) {
             throw new RushHourException("The car " + id + " can't be moved to "
@@ -86,7 +87,6 @@ public class RushHourGame {
      * @return true if the exit position contains the redCar
      */
     public boolean isOver() {
-        //RushHourException inutile?
         return this.board.getCarAt(this.board.getExit()) != null
                 && this.board.getCarAt(this.board.getExit()).equals(this.redCar);
     }

@@ -10,8 +10,11 @@ import static org.junit.Assert.*;
  */
 public class PositionTest {
 
-    // CLR : à quoi sert-il ?
+    /**
+     * This method is used to display the class name for the automated test V3.
+     */
     public PositionTest() {
+        System.out.println("PositionTest");
     }
 
     /**

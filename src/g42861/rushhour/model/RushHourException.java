@@ -8,6 +8,8 @@ package g42861.rushhour.model;
  */
 public class RushHourException extends Exception {
 
+    private static final long serialVersionUID = 1L;
+
     /**
      * Constructs an instance of <code>RushHourException</code> with the
      * specified detail message.

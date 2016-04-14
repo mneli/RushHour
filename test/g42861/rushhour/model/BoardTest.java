@@ -10,7 +10,11 @@ import static org.junit.Assert.*;
  */
 public class BoardTest {
 
+    /**
+     * This method is used to display the class name for the automated test V3.
+     */
     public BoardTest() {
+        System.out.println("BoardTest");
     }
 
     /**

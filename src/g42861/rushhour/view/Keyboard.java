@@ -25,15 +25,6 @@ public class Keyboard {
         return scanner.next().toUpperCase().charAt(0);
     }
 
-    /*
-    public static String scanWord() {
-        java.util.Scanner scanner = new java.util.Scanner(System.in);
-        while (!scanner.hasNext()) {
-            scanner.next();
-        }
-        return scanner.next();
-    }
-     */
     /**
      * Capture the first letter of the direction the car should be moved.
      *

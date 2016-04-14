@@ -21,96 +21,7 @@ public class Display {
         board.put(car1);
         board.put(car2);
         board.put(car3);
-        displayBoardV2(board);
-    }
-
-    /**
-     * Display the board with cars. First version
-     *
-     * @param board the board to display
-     */
-    public static void displayBoardV2(Board board) {
-        System.out.print(" ");
-        for (int i = 0; i < board.getWidth(); i++) {
-            System.out.print("_ ");
-        }
-
-        System.out.println();
-
-        Car car;
-        for (int row = 0; row < board.getHeight(); row++) {
-            System.out.print("|");
-            boolean showExit = false;
-            for (int column = 0; column < board.getWidth(); column++) {
-                car = board.getCarAt(new Position(row, column));
-                if (car != null) {
-                    System.out.print(car.getId() + " ");
-                } else {
-                    System.out.print("  ");
-                }
-                showExit = (row == board.getExit().getRow() && column == board.getExit().getColumn());
-
-            }
-            if (showExit)
-                System.out.println("X");
-            else
-                System.out.println("|");
-        }
-        System.out.print(" ");
-        for (int i = 0; i < board.getWidth(); i++) {
-            System.out.print("_ ");
-        }
-        System.out.println();
-    }
-
-    /**
-     * Display the board with cars. Second version
-     *
-     * @param board the board to display
-     */
-    public static void displayBoardV3(Board board) {
-        System.out.print(" ");
-        for (int i = 0; i < board.getWidth(); i++) {
-            System.out.print("___");
-        }
-
-        System.out.println();
-
-        Car car;
-        for (int row = 0; row < board.getHeight(); row++) {
-            System.out.print("|");
-            for (int i = 0; i < board.getWidth(); i++) {
-                System.out.print("   ");
-            }
-            System.out.println("|");
-            System.out.print("|");
-            boolean showExit = false;
-            for (int column = 0; column < board.getWidth(); column++) {
-                car = board.getCarAt(new Position(row, column));
-                if (car != null) {
-                    System.out.print(" " + car.getId() + " ");
-                } else {
-                    System.out.print("   ");
-                }
-                showExit = (row == board.getExit().getRow() && column == board.getExit().getColumn());
-
-            }
-            if (showExit)
-                System.out.println("X");
-            else
-                System.out.println("|");
-
-            System.out.print("|");
-            for (int i = 0; i < board.getWidth(); i++) {
-                System.out.print("   ");
-            }
-            System.out.println("|");
-        }
-        System.out.print(" ");
-        for (int i = 0; i < board.getWidth(); i++) {
-            System.out.print("___");
-        }
-        System.out.println();
+        displayBoard(board);
     }
 
     /**
@@ -119,50 +30,73 @@ public class Display {
      * @param board the board to display
      */
     public static void displayBoard(Board board) {
-        System.out.print(" ");
-        for (int i = 0; i < board.getWidth(); i++) {
-            System.out.print(Color.toPurple("___"));
-        }
+        displayUpperLowerBorder(board);
 
-        System.out.println();
-
-        Car car;
         for (int row = 0; row < board.getHeight(); row++) {
-            System.out.print(Color.toPurple(Color.toPurple("|")));
-            for (int i = 0; i < board.getWidth(); i++) {
-                System.out.print("   ");
-            }
-            System.out.println(Color.toPurple("|"));
+            displayEmptyLine(board);
             System.out.print(Color.toPurple("|"));
             boolean showExit = false;
-            for (int column = 0; column < board.getWidth(); column++) {
-                car = board.getCarAt(new Position(row, column));
-                if (car != null) {
-                    if (car.getId() == 'R')
-                        System.out.print(Color.toRed(" " + car.getId() + " "));
-                    else
-                        System.out.print(Color.toCyan(" " + car.getId() + " "));
-                } else {
-                    System.out.print("   ");
-                }
-                showExit = (row == board.getExit().getRow() && column == board.getExit().getColumn());
 
+            for (int column = 0; column < board.getWidth(); column++) {
+                showExit = displayBoardCell(board, row, column);
             }
+
             if (showExit)
                 System.out.println(Color.toGreen("X"));
             else
                 System.out.println(Color.toPurple("|"));
 
-            System.out.print(Color.toPurple("|"));
-            for (int i = 0; i < board.getWidth(); i++) {
-                System.out.print("   ");
-            }
-            System.out.println(Color.toPurple("|"));
+            displayEmptyLine(board);
         }
+        displayUpperLowerBorder(board);
+
+    }
+
+    /**
+     * Display the upper or lower boarder of the board
+     *
+     * @param board the board
+     */
+    private static void displayUpperLowerBorder(Board board) {
         System.out.print(" ");
         for (int i = 0; i < board.getWidth(); i++) {
             System.out.print(Color.toPurple("___"));
         }
         System.out.println();
+    }
+
+    /**
+     * Display an empty line with left border and right
+     *
+     * @param board the board
+     */
+    private static void displayEmptyLine(Board board) {
+        System.out.print(Color.toPurple("|"));
+        for (int i = 0; i < board.getWidth(); i++) {
+            System.out.print("   ");
+        }
+        System.out.println(Color.toPurple("|"));
+    }
+
+    /**
+     * Display a cell of the board and verify if the coordinates of the position
+     * received is the same as at the coordinates of the exit position
+     *
+     * @param board the board
+     * @param row the row number of the cell
+     * @param column the column number of the cell
+     * @return
+     */
+    private static boolean displayBoardCell(Board board, int row, int column) {
+        Car car = board.getCarAt(new Position(row, column));
+        if (car != null) {
+            if (car.getId() == 'R')
+                System.out.print(Color.toRed(" " + car.getId() + " "));
+            else
+                System.out.print(Color.toCyan(" " + car.getId() + " "));
+        } else {
+            System.out.print("   ");
+        }
+        return (row == board.getExit().getRow() && column == board.getExit().getColumn());
     }
 }

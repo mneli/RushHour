@@ -37,16 +37,20 @@ public class Board {
             throw new IllegalArgumentException("Invalid exit position");
         }
 
-        if (exit.getRow() == 0 && (exit.getColumn() <= 0 || exit.getColumn() >= width - 1)) {
+        if (exit.getRow() == 0 && (exit.getColumn() <= 0
+                || exit.getColumn() >= width - 1)) {
             throw new IllegalArgumentException("Invalid exit position");
         }
-        if (exit.getRow() == height - 1 && (exit.getColumn() <= 0 || exit.getColumn() >= width - 1)) {
+        if (exit.getRow() == height - 1 && (exit.getColumn() <= 0
+                || exit.getColumn() >= width - 1)) {
             throw new IllegalArgumentException("Invalid exit position");
         }
-        if (exit.getColumn() == 0 && (exit.getRow() <= 0 || exit.getRow() >= height - 1)) {
+        if (exit.getColumn() == 0 && (exit.getRow() <= 0
+                || exit.getRow() >= height - 1)) {
             throw new IllegalArgumentException("Invalid exit position");
         }
-        if (exit.getColumn() == width - 1 && (exit.getRow() <= 0 || exit.getRow() >= height - 1)) {
+        if (exit.getColumn() == width - 1 && (exit.getRow() <= 0
+                || exit.getRow() >= height - 1)) {
             throw new IllegalArgumentException("Invalid exit position");
         }
 
@@ -133,14 +137,7 @@ public class Board {
      * @param car the instance of Car to place on board
      */
     public void put(Car car) {
-        /*
-        "Ajoutez une méthode put(Car car) qui reçoit une voiture en paramètre et
-        place cette voiture sur chaque case du plateau correspondant à une position
-        de la voiture. Cette méthode peut supposer que la place est libre."
-        
-        Peut-on également supposer qu'aucune des positions occupé par la voiture 
-        ne se trouve hors plateau?
-         */
+
         List<Position> listPos = car.getPositions();
         for (Position pos : listPos) {
             this.grid[pos.getRow()][pos.getColumn()] = car;
@@ -197,7 +194,8 @@ public class Board {
     public boolean canMove(Car car, Direction direction) {
         boolean canMove;
         List<Position> listPos = car.getPositions();
-        Car newCar = new Car(car.getId(), listPos.size(), car.getOrientation(), car.getCurrentPosition());
+        Car newCar = new Car(car.getId(), listPos.size(),
+                car.getOrientation(), car.getCurrentPosition());
         newCar.move(direction);
         remove(car);
         canMove = canPut(newCar);

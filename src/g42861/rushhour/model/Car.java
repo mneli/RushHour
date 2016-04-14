@@ -138,8 +138,7 @@ public class Car {
      * particular order in the list
      */
     public List<Position> getPositions() {
-        List<Position> listPositions;
-        listPositions = new ArrayList<>();
+        List<Position> listPositions = new ArrayList<>();
         for (int i = 0; i < this.size; i++) {
             switch (this.orientation) {
                 case HORIZONTAL:

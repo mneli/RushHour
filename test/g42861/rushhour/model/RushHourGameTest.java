@@ -11,7 +11,11 @@ import static org.junit.Assert.*;
  */
 public class RushHourGameTest {
 
+    /**
+     * This method is used to display the class name for the automated test V3.
+     */
     public RushHourGameTest() {
+        System.out.println("RushHourGameTest");
     }
 
     /**
