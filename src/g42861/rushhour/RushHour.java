@@ -1,3 +1,4 @@
+// CLR : aucune remarque !
 package g42861.rushhour;
 
 import g42861.rushhour.model.Car;
