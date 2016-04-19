@@ -30,25 +30,33 @@ public class Display {
      * @param board the board to display
      */
     public static void displayBoard(Board board) {
-        displayUpperLowerBorder(board);
+        boolean exitUp = board.getExit().getRow() == 0;
+        boolean exitDown = board.getExit().getRow() == board.getHeight() - 1;
+        boolean exitLeft = board.getExit().getColumn() == 0;
+        boolean exitRight = false;
+
+        displayUpperLowerBorder(board, exitUp);
 
         for (int row = 0; row < board.getHeight(); row++) {
             displayEmptyLine(board);
-            System.out.print(Color.toPurple("|"));
-            boolean showExit = false;
+
+            if (exitLeft && row == board.getExit().getRow())
+                System.out.print(Color.toGreen("X"));
+            else
+                System.out.print(Color.toPurple("|"));
 
             for (int column = 0; column < board.getWidth(); column++) {
-                showExit = displayBoardCell(board, row, column);
+                exitRight = displayBoardCell(board, row, column);
             }
 
-            if (showExit)
+            if (exitRight)
                 System.out.println(Color.toGreen("X"));
             else
                 System.out.println(Color.toPurple("|"));
 
             displayEmptyLine(board);
         }
-        displayUpperLowerBorder(board);
+        displayUpperLowerBorder(board, exitDown);
 
     }
 
@@ -56,11 +64,15 @@ public class Display {
      * Display the upper or lower boarder of the board
      *
      * @param board the board
+     * @param showExit used to determine if the exit should be display
      */
-    private static void displayUpperLowerBorder(Board board) {
+    private static void displayUpperLowerBorder(Board board, boolean showExit) {
         System.out.print(" ");
         for (int i = 0; i < board.getWidth(); i++) {
-            System.out.print(Color.toPurple("___"));
+            if (showExit && i == board.getExit().getColumn())
+                System.out.print(Color.toPurple("_") + Color.toGreen("X") + Color.toPurple("_"));
+            else
+                System.out.print(Color.toPurple("___"));
         }
         System.out.println();
     }
