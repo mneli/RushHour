@@ -101,6 +101,7 @@ public class Race {
             System.out.print(snail.getName() + ", ");
         }
         int nbDeplacement = (int) (Math.random() * 20) + 1;
-        System.out.println("\nVainqueur : " + course.run(nbDeplacement).getName());
+        System.out.println("\nVainqueur : "
+                + course.run(nbDeplacement).getName());
     }
 }
