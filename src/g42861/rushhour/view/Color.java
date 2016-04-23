@@ -27,13 +27,13 @@ public class Color {
     }
 
     /**
-     * Color a Sting to red.
+     * Color a Sting background to red.
      *
      * @param a the String to color.
      * @return the colored String.
      */
     public static String toRed(String a) {
-        return "\033[31m" + a + toDefault();
+        return "\033[41m" + a + toDefault();
     }
 
     /**

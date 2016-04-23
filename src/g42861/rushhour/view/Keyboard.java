@@ -18,6 +18,7 @@ public class Keyboard {
      */
     public static char scanChar(String msg) {
         java.util.Scanner scanner = new java.util.Scanner(System.in);
+        System.out.print(msg);
         while (!scanner.hasNext()) {
             System.out.print(msg);
             scanner.next();
