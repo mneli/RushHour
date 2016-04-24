@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+       
+    <!-- car orientation-->
+    <xs:element name="orientation">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:enumeration value="HORIZONTAL" />
+                <xs:enumeration value="VERTICAL" />
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    
+    <!-- red car orientation-->
+    <xs:element name="redCarOrientation">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:enumeration value="HORIZONTAL" />
+                <xs:enumeration value="VERTICAL" />
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    
+    <!-- car -->
+    <xs:element name="car">
+        <xs:complexType>
+            <xs:sequence>
+                <!-- id -->
+                <xs:element name="id" type="xs:token" minOccurs="1" maxOccurs="1" />
+                <!-- size -->
+                <xs:element name="size" type="xs:integer" minOccurs="1" maxOccurs="1" />
+                <!-- orientation -->
+                <xs:element ref="orientation" minOccurs="1" maxOccurs="1" />
+                <!-- current position -->
+                <xs:element name="row" type="xs:integer" minOccurs="1" maxOccurs="1" />
+                <xs:element name="col" type="xs:integer" minOccurs="1" maxOccurs="1" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- red car -->
+    <xs:element name="redCar">
+        <xs:complexType>
+            <xs:sequence>
+                <!-- id -->
+                <xs:element name="redCarId" type="xs:token" minOccurs="1" maxOccurs="1" />
+                <!-- size -->
+                <xs:element name="redCarSize" type="xs:integer" minOccurs="1" maxOccurs="1" />
+                <!-- orientation -->
+                <xs:element ref="redCarOrientation" minOccurs="1" maxOccurs="1" />
+                <!-- current position -->
+                <xs:element name="redCarRow" type="xs:integer" minOccurs="1" maxOccurs="1" />
+                <xs:element name="redCarCol" type="xs:integer" minOccurs="1" maxOccurs="1" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <!-- list of cars -->
+    <xs:element name="cars">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="car" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <!-- level -->
+    <xs:element name="level">
+        <xs:complexType> 
+            <xs:sequence>                
+                <!-- height -->
+                <xs:element name="height" type="xs:integer" minOccurs="1" maxOccurs="1" />
+                <!-- width -->
+                <xs:element name="width" type="xs:integer" minOccurs="1" maxOccurs="1" />
+                <!-- exit -->
+                <xs:element name="exitRow" type="xs:integer" minOccurs="1" maxOccurs="1" />
+                <xs:element name="exitCol" type="xs:integer" minOccurs="1" maxOccurs="1" />
+                <!-- car list -->
+                <xs:element ref="cars" minOccurs="1" maxOccurs="1" />
+                <!-- red car -->
+                <xs:element ref="redCar" minOccurs="1" maxOccurs="1" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <!-- root/levels -->
+    <xs:element name="root">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="level" minOccurs="1" maxOccurs="unbounded" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
+    

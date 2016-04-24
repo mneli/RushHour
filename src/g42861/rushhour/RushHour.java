@@ -1,14 +1,24 @@
-// CLR : aucune remarque !
-
 package g42861.rushhour;
 
 import g42861.rushhour.model.Car;
 import g42861.rushhour.model.Orientation;
 import g42861.rushhour.model.Position;
+import g42861.rushhour.model.RushHourException;
 import g42861.rushhour.model.RushHourGame;
+import g42861.rushhour.view.Keyboard;
 import g42861.rushhour.view.RushHourView;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 /**
  * Main class of RushHourGame. Used to start the game
@@ -22,39 +32,151 @@ public class RushHour {
      */
     public static void main(String[] args) {
 
-        Position exit = new Position(2, 5);
+        char replay;
 
-        Car car1 = new Car('1', 3, Orientation.VERTICAL, new Position(0, 0));
-        Car car2 = new Car('2', 2, Orientation.VERTICAL, new Position(4, 0));
-        Car car3 = new Car('3', 2, Orientation.HORIZONTAL, new Position(0, 1));
-        Car car4 = new Car('4', 2, Orientation.HORIZONTAL, new Position(4, 1));
-        Car car5 = new Car('5', 3, Orientation.VERTICAL, new Position(1, 3));
-        Car car6 = new Car('6', 3, Orientation.HORIZONTAL, new Position(5, 2));
-        Car car7 = new Car('7', 3, Orientation.VERTICAL, new Position(3, 5));
+        do {
+            List<RushHourGame> levels = parseLevels();
+            System.out.println("RushHour Game!");
+            System.out.println("Please choose a level : ");
+            int levelChoice = Keyboard.scanLevel(levels.size());
 
-        List<Car> cars = new ArrayList<>();
-        cars.add(car1);
-        cars.add(car2);
-        cars.add(car3);
-        cars.add(car4);
-        cars.add(car5);
-        cars.add(car6);
-        cars.add(car7);
+            RushHourView view = new RushHourView(levels.get(levelChoice));
+            view.play();
+            replay = Keyboard.scanChar("Would you like to play another level?"
+                    + "\nPress Y for yes or any key to stop the game\n");
+        } while (replay == 'Y');
+    }
 
-        Car redCar;
-        redCar = new Car('R', 2, Orientation.HORIZONTAL, new Position(2, 1));
-
-        RushHourGame game = null;
+    /**
+     * Parse levels from an XML file.
+     *
+     * @return a list of levels
+     */
+    private static List<RushHourGame> parseLevels() {
+        List<RushHourGame> levels = new ArrayList<>();
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try {
-            game = new RushHourGame(6, 6, exit, cars, redCar);
-        } catch (Exception e) {
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document xmlDoc = builder.parse(new File("src/g42861/rushhour/levels.xml"));
+
+            List<List<Car>> listCars = parseCarList(xmlDoc);
+
+            NodeList nList = xmlDoc.getElementsByTagName("level");
+            for (int i = 0; i < nList.getLength(); i++) {
+                RushHourGame game = null;
+                Node node = nList.item(i);
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    Element elt = (Element) node;
+                    game = getGame(elt, listCars.get(i));
+                }
+                levels.add(game);
+            }
+
+        } catch (ParserConfigurationException | SAXException | IOException e) {
             System.out.println(e.getMessage());
         }
+        return levels;
+    }
 
-        RushHourView view = new RushHourView(game);
+    /**
+     * Parse a car lists from an XML file.
+     *
+     * @param doc the Document file obtained from the XML file with
+     * DocumentBuilderFacory.
+     * @return a list of car list
+     */
+    private static List<List<Car>> parseCarList(Document doc) {
+        List<List<Car>> listCars = new ArrayList<>();
+        NodeList nList = doc.getElementsByTagName("cars");
+        for (int i = 0; i < nList.getLength(); i++) {
+            Node node = nList.item(i);
+            List<Car> cars = new ArrayList<>();
+            if (node.getNodeType() == Node.ELEMENT_NODE) {
+                Element elt = (Element) node;
+                int item = 0;
+                while (elt.getElementsByTagName("id").item(item) != null) {
+                    Car car = getCar(elt, item);
+                    cars.add(car);
+                    item++;
+                }
+            }
+            listCars.add(i, cars);
+        }
+        return listCars;
+    }
 
-        view.play();
+    /**
+     * Get the text content of an element.
+     *
+     * @param elt the level from where the data will be extracted
+     * @param tag the tag name
+     * @param itemNumber the tag to take. For example the tag cars contains
+     * often more than one tag car. So to get the first car that comes in the
+     * XML file the item number should be 0. For the second car, the item number
+     * should be 1.
+     * @return the text content
+     */
+    private static String getItem(Element elt, String tag, int itemNumber) {
+        return elt.getElementsByTagName(tag).item(itemNumber).getTextContent();
+    }
 
+    /**
+     * Get the red car of the level
+     *
+     * @param elt the level from where the data will be extracted
+     * @return the red car
+     */
+    private static Car getRedCar(Element elt) {
+        Car redCar = new Car(
+                getItem(elt, "redCarId", 0).charAt(0),
+                Integer.parseInt(getItem(elt, "redCarSize", 0)),
+                Orientation.valueOf(getItem(elt, "redCarOrientation", 0)),
+                new Position(
+                        Integer.parseInt(getItem(elt, "redCarRow", 0)),
+                        Integer.parseInt(getItem(elt, "redCarCol", 0))));
+        return redCar;
+    }
+
+    /**
+     * Get a car of the level
+     *
+     * @param elt the level from where the data will be extracted
+     * @param item the car to return
+     * @return a car
+     */
+    private static Car getCar(Element elt, int item) {
+        Car car = new Car(
+                getItem(elt, "id", item).charAt(0),
+                Integer.parseInt(getItem(elt, "size", item)),
+                Orientation.valueOf(getItem(elt, "orientation", item)),
+                new Position(
+                        Integer.parseInt(getItem(elt, "row", item)),
+                        Integer.parseInt(getItem(elt, "col", item))));
+        return car;
+    }
+
+    /**
+     * Get a level of RushHourGame.
+     *
+     * @param elt the level from where the data will be extracted
+     * @param cars a list of cars
+     * @return a constructed level of RushHourGame
+     */
+    private static RushHourGame getGame(Element elt, List<Car> cars) {
+        RushHourGame game = null;
+        try {
+            game = new RushHourGame(
+                    Integer.parseInt(getItem(elt, "height", 0)),
+                    Integer.parseInt(getItem(elt, "width", 0)),
+                    new Position(
+                            Integer.parseInt(getItem(elt, "exitRow", 0)),
+                            Integer.parseInt(getItem(elt, "exitCol", 0))),
+                    cars,
+                    getRedCar(elt));
+        } catch (RushHourException e) {
+            System.out.println(e.getMessage());
+        }
+        return game;
     }
 
 }

@@ -32,7 +32,6 @@ public class RushHourView {
     public void play() {
         List<Character> listId = getListId(this.game.getBoard());
         int gameCounter = 0;
-        System.out.println("Rush Hour Game!");
         System.out.println("The red car represented by R have to reach "
                 + "the exit marked with an X to finish the game.");
         Display.displayBoard(this.game.getBoard());
