@@ -22,7 +22,7 @@ public class Board {
      * border and can't be on any corner
      * @throws IllegalArgumentException if <ul><li>height smaller than 1</li>
      * <li>width smaller than 1</li>
-     * <li>exit position is any any corner or not at the right border</li></ul>
+     * <li>exit position is any any corner</li></ul>
      */
     public Board(int height, int width, Position exit) {
         if (height <= 0) {

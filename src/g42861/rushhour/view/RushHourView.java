@@ -40,14 +40,18 @@ public class RushHourView {
             while (invalidEntry) {
                 try {
                     System.out.print("Choose the car to move. ");
-                    char id = Keyboard.scanChar("Enter car id : ");
+                    char id = Keyboard.scanChar("Enter car id "
+                            + "or X to abort the game: ");
                     while (!listId.contains(id)) {
                         id = Keyboard.scanChar("Invalid car id,"
                                 + " insert an valid id : ");
                     }
+                    if (id == 'X') {
+                        return;
+                    }
                     System.out.print("Choose the direction to move : ");
-                    Direction direction = Keyboard.scanDirection("Choose "
-                            + "between L for left, R for right, U for up or D for down : ");
+                    Direction direction = Keyboard.scanDirection("\nL for LEFT "
+                            + "\nR for RIGHT \nU for UP \nD for DOWN : ");
 
                     this.game.move(id, direction);
                     invalidEntry = false;
@@ -69,15 +73,15 @@ public class RushHourView {
      * @return the list of car id's on board
      */
     private List<Character> getListId(Board board) {
-        List<Character> listchar = new ArrayList<>();
-
+        List<Character> listId = new ArrayList<>();
+        listId.add('X');
         for (int row = 0; row < board.getHeight(); row++) {
             for (int column = 0; column < board.getWidth(); column++) {
                 Car car = board.getCarAt(new Position(row, column));
-                if (car != null && !listchar.contains(car.getId()))
-                    listchar.add(car.getId());
+                if (car != null && !listId.contains(car.getId()))
+                    listId.add(car.getId());
             }
         }
-        return listchar;
+        return listId;
     }
 }

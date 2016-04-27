@@ -52,7 +52,7 @@ public class Position {
 
     /**
      * Get the next position in the direction next to the current instance of
-     * Position. For example : If the current position is (2,3) and the
+     * Position. <br>For example : If the current position is (2,3) and the
      * direction is UP, the translated position would be (1,3)
      *
      * @param direction the direction to move

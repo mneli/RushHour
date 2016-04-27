@@ -25,7 +25,7 @@ public class Display {
     }
 
     /**
-     * Display the board with cars. Third version, colored version
+     * Display the board with cars.
      *
      * @param board the board to display
      */

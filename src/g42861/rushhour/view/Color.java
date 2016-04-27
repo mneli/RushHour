@@ -1,7 +1,7 @@
 package g42861.rushhour.view;
 
 /**
- * This class lets color a text. Example :
+ * This class is used to color a texts foreground and/or background.
  * <table summary="colorOptions">
  * <tbody>
  * <tr><th>Color</th><th>Foreground</th><th>Background</th></tr>
@@ -15,6 +15,9 @@ package g42861.rushhour.view;
  * <tr><td>White</td>  <td>37</td> <td>47</td></tr>
  * </tbody>
  * </table>
+ * Example of use : foreground color cyan(36) and background color red(41) would
+ * be "\033[36;41m". <br>The foreground and the background's position can be
+ * switched ("\033[41;36m" is correct too).
  *
  * @author G42861
  */
