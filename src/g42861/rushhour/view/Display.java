@@ -38,23 +38,23 @@ public class Display {
         displayUpperLowerBorder(board, exitUp);
 
         for (int row = 0; row < board.getHeight(); row++) {
-            displayEmptyLine(board);
+            //displayEmptyLine(board);
 
             if (exitLeft && row == board.getExit().getRow())
-                System.out.print(Color.toGreen("X"));
+                System.out.print(Color.toRed("X"));
             else
-                System.out.print(Color.toPurple("|"));
+                System.out.print(Color.toWhite("|"));
 
             for (int column = 0; column < board.getWidth(); column++) {
                 exitRight = displayBoardCell(board, row, column);
             }
 
             if (exitRight)
-                System.out.println(Color.toGreen("X"));
+                System.out.println(Color.toRed("X"));
             else
-                System.out.println(Color.toPurple("|"));
+                System.out.println(Color.toWhite("|"));
 
-            displayEmptyLine(board);
+            //displayEmptyLine(board);
         }
         displayUpperLowerBorder(board, exitDown);
 
@@ -67,14 +67,14 @@ public class Display {
      * @param showExit used to determine if the exit should be display
      */
     private static void displayUpperLowerBorder(Board board, boolean showExit) {
-        System.out.print(" ");
+        System.out.print(Color.toWhite(" "));
         for (int i = 0; i < board.getWidth(); i++) {
             if (showExit && i == board.getExit().getColumn())
-                System.out.print(Color.toPurple("_") + Color.toGreen("X") + Color.toPurple("_"));
+                System.out.print(Color.toRed(" ") + Color.toRed("X") + Color.toRed(" "));
             else
-                System.out.print(Color.toPurple("___"));
+                System.out.print(Color.toWhite("---"));
         }
-        System.out.println();
+        System.out.println(Color.toWhite(" "));
     }
 
     /**
@@ -83,11 +83,11 @@ public class Display {
      * @param board the board
      */
     private static void displayEmptyLine(Board board) {
-        System.out.print(Color.toPurple("|"));
+        System.out.print(Color.toMagenta("|"));
         for (int i = 0; i < board.getWidth(); i++) {
             System.out.print("   ");
         }
-        System.out.println(Color.toPurple("|"));
+        System.out.println(Color.toMagenta("|"));
     }
 
     /**
@@ -102,14 +102,48 @@ public class Display {
     private static boolean displayBoardCell(Board board, int row, int column) {
         Car car = board.getCarAt(new Position(row, column));
         if (car != null) {
-            if (car.getId() == 'R')
-                System.out.print(Color.toRed(" " + car.getId() + " "));
-            else
-                System.out.print(Color.toCyan(" " + car.getId() + " "));
+            displayColoredCell(car.getId());
         } else {
             System.out.print("   ");
         }
         return (row == board.getExit().getRow()
                 && column == board.getExit().getColumn());
+    }
+
+    /**
+     * Display a cell containing a car id to red if the cell contains the red
+     * car or to blue, cyan, green, purple or yellow for any other car.
+     *
+     * @param id the id to display
+     */
+    private static void displayColoredCell(char id) {
+
+        switch (id) {
+            case 'R':
+                System.out.print(Color.toRed(" " + id + " "));
+                break;
+            case '1':
+            case '6':
+                System.out.print(Color.toBlue(" " + id + " "));
+                break;
+            case '2':
+            case '7':
+                System.out.print(Color.toCyan(" " + id + " "));
+                break;
+            case '3':
+            case '8':
+                System.out.print(Color.toGreen(" " + id + " "));
+                break;
+            case '4':
+            case '9':
+                System.out.print(Color.toMagenta(" " + id + " "));
+                break;
+            case '5':
+            case '0':
+                System.out.print(Color.toYellow(" " + id + " "));
+                break;
+            default:
+                System.out.print(Color.toWhite(" " + id + " "));
+        }
     }
 }

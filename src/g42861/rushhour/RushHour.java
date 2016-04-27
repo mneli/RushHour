@@ -32,32 +32,57 @@ public class RushHour {
      */
     public static void main(String[] args) {
 
-        char replay;
+        char reload;
+        int difficulty;
+        File file = null;
+
+        System.out.println("RushHour Game!");
 
         do {
-            List<RushHourGame> levels = parseLevels();
-            System.out.println("RushHour Game!");
+            System.out.println("Please choose the difficulty : ");
+
+            do {
+                System.out.println("1 : Easy" + "\n2 : Medium" + "\n3 : Hard");
+                difficulty = Keyboard.scanInt();
+                System.out.println(difficulty);
+            } while (difficulty < 1 || difficulty > 3);
+
+            switch (difficulty) {
+                case 1:
+                    file = new File("src/g42861/rushhour/easyLevels.xml");
+                    break;
+                case 2:
+                    file = new File("src/g42861/rushhour/mediumLevels.xml");
+                    break;
+                case 3:
+                    file = new File("src/g42861/rushhour/hardLevels.xml");
+            }
+
+            List<RushHourGame> levels = parseLevels(file);
+
             System.out.println("Please choose a level : ");
             int levelChoice = Keyboard.scanLevel(levels.size());
 
             RushHourView view = new RushHourView(levels.get(levelChoice));
             view.play();
-            replay = Keyboard.scanChar("Would you like to play another level?"
+
+            reload = Keyboard.scanChar("Would you like to play another level?"
                     + "\nPress Y for yes or any key to stop the game\n");
-        } while (replay == 'Y');
+        } while (reload == 'Y');
     }
 
     /**
      * Parse levels from an XML file.
      *
-     * @return a list of levels
+     * @param file the raw xml file
+     * @return a list of RushHourGame/level
      */
-    private static List<RushHourGame> parseLevels() {
+    private static List<RushHourGame> parseLevels(File file) {
         List<RushHourGame> levels = new ArrayList<>();
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try {
             DocumentBuilder builder = factory.newDocumentBuilder();
-            Document xmlDoc = builder.parse(new File("src/g42861/rushhour/levels.xml"));
+            Document xmlDoc = builder.parse(file);
 
             List<List<Car>> listCars = parseCarList(xmlDoc);
 

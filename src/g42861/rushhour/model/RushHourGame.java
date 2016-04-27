@@ -22,11 +22,13 @@ public class RushHourGame {
      * @param cars a list of cars to be placed on the board
      * @param redCar the car that have to reach the exit position
      * @throws RushHourException if the red car is not aligned to the exit
-     * position.<li>If the red car's orientation is horizontal, the red car's
-     * row must be the same as the row of the exit position</li><li>If the red
-     * car's orientation is vertical, the red car's column must be the same as
-     * the column of the exit position</li>
-     *
+     * position.
+     * <ul>
+     * <li>If the red car's orientation is horizontal, the red car's row must be
+     * the same as the row of the exit position</li><li>If the red car's
+     * orientation is vertical, the red car's column must be the same as the
+     * column of the exit position</li>
+     * </ul>
      */
     public RushHourGame(int height, int width, Position exit,
             List<Car> cars, Car redCar) throws RushHourException {

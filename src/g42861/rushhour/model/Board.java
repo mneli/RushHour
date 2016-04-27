@@ -20,9 +20,9 @@ public class Board {
      * @param width the number of columns of the board
      * @param exit the position of the exit. The exit position must be on a
      * border and can't be on any corner
-     * @throws IllegalArgumentException if <li>height smaller than 1</li>
+     * @throws IllegalArgumentException if <ul><li>height smaller than 1</li>
      * <li>width smaller than 1</li>
-     * <li>exit position is any any corner or not at the right border</li>
+     * <li>exit position is any any corner or not at the right border</li></ul>
      */
     public Board(int height, int width, Position exit) {
         if (height <= 0) {
@@ -61,9 +61,9 @@ public class Board {
     /**
      * Construct an instance of Board with default values. The default values
      * are :
-     * <li>height : 6</li>
+     * <ul><li>height : 6</li>
      * <li>width : 6</li>
-     * <li>exit at Position (2,5)</li>
+     * <li>exit at Position (2,5)</li></ul>
      */
     public Board() {
         this(6, 6, new Position(2, 5));
@@ -109,10 +109,10 @@ public class Board {
 
     /**
      * Verify if a car can be placed on board.
+     * <ul><li>Check if every position that the car received in parameter want
+     * to occupy on board doesn't contain already an another car</li>
      * <li>Check if every position that the car received in parameter want to
-     * occupy on board doesn't contain already an another car</li>
-     * <li>Check if every position that the car received in parameter want to
-     * occupy on board are on board and not outside</li>
+     * occupy on board are on board and not outside</li></ul>
      *
      * @param car the instance of Car
      * @return true if the car can be placed

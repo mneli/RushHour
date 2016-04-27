@@ -2,8 +2,10 @@ package g42861.rushhour.model;
 
 /**
  * Orientation can take 2 values:
+ * <ul>
  * <li>HORIZONTAL for horizontal orientation</li>
  * <li>VERTICAL for vertical orientation</li>
+ * </ul>
  *
  * @author G42861
  */

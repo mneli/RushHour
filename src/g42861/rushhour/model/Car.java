@@ -25,17 +25,19 @@ public class Car {
      * @param orientation the orientation of the car (horizontal or vertical) on
      * the board
      * @param currentPosition the current position of the car on the board.<br>
-     * <li>If the orientation of the car is horizontal, the current position
+     * <ul><li>If the orientation of the car is horizontal, the current position
      * indicates the row number(which doesn't change) and the smallest column
      * number that the car occupies.</li>
      * <li>If the orientation of the car is vertical, the current position
      * indicates the smallest row number and the column number(which doesn't
-     * change) that the car occupies.</li>
+     * change) that the car occupies.</li></ul>
      * For example : <br>
-     * <li>If the instance orientation is horizonal, the current position of a
-     * car of size 2 that occupies the positions (1,2),(1,3) would be (1,2)</li>
+     * <ul><li>If the instance orientation is horizonal, the current position of
+     * a car of size 2 that occupies the positions (1,2),(1,3) would be
+     * (1,2)</li>
      * <li>If the instance orientation is vertical, the current position of a
-     * car of size 2 that occupies the positions (1,2),(2,2) would be (1,2)</li>
+     * car of size 2 that occupies the positions (1,2),(2,2) would be
+     * (1,2)</li></ul>
      * @throws IllegalArgumentException if the size is smaller than 1
      */
     public Car(char id, int size, Orientation orientation,
@@ -69,17 +71,19 @@ public class Car {
 
     /**
      * Get the currentPosition of an instance of Car.
-     * <li>If the orientation of the car is horizontal, the current position
+     * <ul><li>If the orientation of the car is horizontal, the current position
      * indicates the row number(which doesn't change) and the smallest column
      * number that the car occupies.</li>
      * <li>If the orientation of the car is vertical, the current position
      * indicates the smallest row number and the column number(which doesn't
-     * change) that the car occupies.</li>
+     * change) that the car occupies.</li></ul>
      * For example : <br>
-     * <li>If the instance orientation is horizonal, the current position of a
-     * car of size 2 that occupies the positions (1,2),(1,3) would be (1,2)</li>
+     * <ul><li>If the instance orientation is horizonal, the current position of
+     * a car of size 2 that occupies the positions (1,2),(1,3) would be
+     * (1,2)</li>
      * <li>If the instance orientation is vertical, the current position of a
-     * car of size 2 that occupies the positions (1,2),(2,2) would be (1,2)</li>
+     * car of size 2 that occupies the positions (1,2),(2,2) would be
+     * (1,2)</li></ul>
      *
      * @return the current position of the car
      */
@@ -127,12 +131,12 @@ public class Car {
 
     /**
      * Get the list of positions a car occupies. Example :
-     * <li>If a car of size 2 is oriented horizontally, and the current position
-     * is (1,2), the returned list will contain the positions (1,2) and
+     * <ul><li>If a car of size 2 is oriented horizontally, and the current
+     * position is (1,2), the returned list will contain the positions (1,2) and
      * (1,3)</li>
      * <li>If a car of size 3 is oriented vertically, and the current position
      * is (1,2), the returned list will contain the positions (1,2), (2,2) and
-     * (3,3)</li>
+     * (3,3)</li></ul>
      *
      * @return a list of positions this instance of Car occupies without any
      * particular order in the list
