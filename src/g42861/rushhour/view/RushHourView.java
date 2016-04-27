@@ -4,6 +4,7 @@ import g42861.rushhour.model.Board;
 import g42861.rushhour.model.Car;
 import g42861.rushhour.model.Direction;
 import g42861.rushhour.model.Position;
+import g42861.rushhour.model.RushHourException;
 import g42861.rushhour.model.RushHourGame;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,17 +44,19 @@ public class RushHourView {
                     char id = Keyboard.scanChar("Enter car id "
                             + "or X to abort the game: ");
                     while (!listId.contains(id)) {
-                        id = Keyboard.scanChar("Invalid car id,"
-                                + " insert an valid id : ");
+                        id = Keyboard.scanChar("Invalid car id, insert an "
+                                + "valid id or X to abort the game: ");
                     }
-                    if (id == 'X') {
+
+                    if (id == 'X')
                         return;
-                    }
+
                     System.out.print("Choose the direction to move : ");
                     Direction direction = Keyboard.scanDirection("\nL for LEFT "
                             + "\nR for RIGHT \nU for UP \nD for DOWN : ");
 
                     this.game.move(id, direction);
+                    moveAgain(id, direction);
                     invalidEntry = false;
                     gameCounter++;
                 } catch (Exception e) {
@@ -83,5 +86,28 @@ public class RushHourView {
             }
         }
         return listId;
+    }
+
+    /**
+     * After a move, this method offers to the player to move the same car to
+     * the same direction if the move is allowed.
+     *
+     * @param id the car id
+     * @param direction the direction to move again
+     * @throws RushHourException in case of id or direction invalid
+     */
+    private void moveAgain(char id, Direction direction)
+            throws RushHourException {
+        char moveAgain = 'M';
+        while (moveAgain == 'M'
+                && this.game.getBoard().canMove(
+                        this.game.getBoard().getCar(id), direction)) {
+            Display.displayBoard(this.game.getBoard());
+            moveAgain = Keyboard.scanChar("The car can be moved to " + direction
+                    + " again.\nPress M to move the car to " + direction
+                    + " again or any other key to move another car");
+            if (moveAgain == 'M')
+                this.game.move(id, direction);
+        }
     }
 }
