@@ -49,13 +49,13 @@ public class RushHour {
 
             switch (difficulty) {
                 case 1:
-                    file = new File("src/g42861/rushhour/easyLevels.xml");
+                    file = new File("src/g42861/rushhour/view/easyLevels.xml");
                     break;
                 case 2:
-                    file = new File("src/g42861/rushhour/mediumLevels.xml");
+                    file = new File("src/g42861/rushhour/view/mediumLevels.xml");
                     break;
                 case 3:
-                    file = new File("src/g42861/rushhour/hardLevels.xml");
+                    file = new File("src/g42861/rushhour/view/hardLevels.xml");
             }
 
             List<RushHourGame> levels = parseLevels(file);
@@ -67,7 +67,7 @@ public class RushHour {
             view.play();
 
             reload = Keyboard.scanChar("Would you like to play another level?"
-                    + "\nPress Y for yes or any key to stop the game\n");
+                    + "\nPress Y for yes or any key to stop the game / ");
         } while (reload == 'Y');
     }
 

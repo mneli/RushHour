@@ -105,7 +105,7 @@ public class RushHourView {
             Display.displayBoard(this.game.getBoard());
             moveAgain = Keyboard.scanChar("The car can be moved to " + direction
                     + " again.\nPress M to move the car to " + direction
-                    + " again or any other key to move another car");
+                    + " again or any other key to move another car : ");
             if (moveAgain == 'M')
                 this.game.move(id, direction);
         }
