@@ -67,7 +67,7 @@ public class RushHour {
             view.play();
 
             reload = Keyboard.scanChar("Would you like to play another level?"
-                    + "\nPress Y for yes or any key to stop the game / ");
+                    + "\nPress Y for yes or any key to stop the game : ");
         } while (reload == 'Y');
     }
 
